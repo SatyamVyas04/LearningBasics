@@ -1,16 +1,20 @@
 # Creating Employee Classes
 class Employee:
+    raise_amount = 1.04
+    n_employees = 0
+
     def __init__(self, fname, lname, salary):
         self.first = fname
         self.last = lname
         self.salary = salary
         self.email = fname + "." + lname + "@Python.com"
-
+        Employee.n_employees += 1
+        
     def fullname(self):
         return "{} {}".format(self.first, self.last)
     
     def Raise(self):
-        self.salary *= 1.04 
+        self.salary *= self.raise_amount
 
     def Details(self):
         print(f" Details of {self.fullname()} are as follows ".center(70, "-"))
@@ -26,6 +30,7 @@ class Employee:
 
 emp1 = Employee("Satyam", "Vyas", int('100_000'))
 emp2 = Employee("Test", "User", int('50_000'))
+print("Employees working here are:", Employee.n_employees)
 
 # Displaying complete Details
 emp1.Details()
