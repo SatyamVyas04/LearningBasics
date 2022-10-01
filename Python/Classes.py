@@ -9,6 +9,9 @@ class Employee:
     def fullname(self):
         return "{} {}".format(self.first, self.last)
     
+    def Raise(self):
+        self.salary *= 1.04 
+
     def Details(self):
         print(f" Details of {self.fullname()} are as follows ".center(70, "-"))
         print("|"+"EmployeeName".center(20, " "), end="|")
@@ -19,10 +22,19 @@ class Employee:
         print(f"{self.email}".center(30, " "), end="|")
         print(f"{self.salary}".center(16, " "), end="|\n") 
         print("-".center(70, "-"))
-        print()    
+        print()   
 
 emp1 = Employee("Satyam", "Vyas", int('100_000'))
 emp2 = Employee("Test", "User", int('50_000'))
 
+# Displaying complete Details
+emp1.Details()
+emp2.Details()
+
+# Applying for Raise
+emp1.Raise()
+emp2.Raise()
+
+# After Applying Raise
 emp1.Details()
 emp2.Details()
