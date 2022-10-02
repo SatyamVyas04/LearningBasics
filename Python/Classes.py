@@ -28,6 +28,10 @@ class Employee:
         print("-".center(70, "-"))
         print()   
 
+    @classmethod
+    def set_raise_amount(cls, amount_percentage):
+        Employee.raise_amount = amount_percentage
+
 emp1 = Employee("Satyam", "Vyas", int('100_000'))
 emp2 = Employee("Test", "User", int('50_000'))
 print("Employees working here are:", Employee.n_employees)
@@ -41,5 +45,16 @@ emp1.Raise()
 emp2.Raise()
 
 # After Applying Raise
-emp1.Details()
-emp2.Details()
+print(emp1.salary)
+print(emp2.salary)
+
+# Changing Raise Amount using classmethod
+Employee.set_raise_amount(1.05)
+
+# Applying for Raise
+emp1.Raise()
+emp2.Raise()
+
+# After Applying Raise
+print(emp1.salary)
+print(emp2.salary)
