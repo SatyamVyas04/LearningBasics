@@ -5,5 +5,4 @@ int main() {
     printf("Enter the Side of the Square: ");
     scanf("%f", &a);
     printf("The Perimeter of the Square is %f", 4*a);
-    return 0;
 }

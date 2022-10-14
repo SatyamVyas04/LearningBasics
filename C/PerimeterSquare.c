@@ -7,5 +7,4 @@ int main() {
     printf("Enter the Breadth of the Rectangle: ");
     scanf("%f", &b);
     printf("The Perimeter of the Rectangle is %f", 2*(l+b));
-    return 0;
 }

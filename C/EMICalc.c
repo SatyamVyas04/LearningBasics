@@ -11,5 +11,4 @@ int main() {
     scanf("%f", &n);
     float variable = pow(1+r, n);
     printf("EMI is %f", (p*r*variable)/(variable-1));
-    return 0;
 }

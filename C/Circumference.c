@@ -1,6 +1,6 @@
 #include <stdio.h>
 // Circumference of Circle
-void main() {
+int main() {
     float r;
     printf("Enter the Radius of the Circle: ");
     scanf("%f", &r);
