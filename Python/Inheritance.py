@@ -28,8 +28,11 @@ class Employee:
         print("-".center(70, "-"))
         print()   
 
+class Developer(Employee):
+    raise_amount = 1.10
+
 emp1 = Employee("Satyam", "Vyas", int('100_000'))
-emp2 = Employee("Test", "User", int('50_000'))
+emp2 = Developer("Second", "Emp", int('50_000'))
 
 # Displaying complete Details
 emp1.Details()
