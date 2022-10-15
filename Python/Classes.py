@@ -31,6 +31,11 @@ class Employee:
     @classmethod
     def set_raise_amount(cls, amount_percentage):
         Employee.raise_amount = amount_percentage
+        
+    @classmethod
+    def from_string(cls, empdata):
+        first, last, salary = empdata.split("-")
+        return cls(first, last, salary)
 
 emp1 = Employee("Satyam", "Vyas", int('100_000'))
 emp2 = Employee("Test", "User", int('50_000'))
@@ -40,21 +45,9 @@ print("Employees working here are:", Employee.n_employees)
 emp1.Details()
 emp2.Details()
 
-# Applying for Raise
-emp1.Raise()
-emp2.Raise()
+# Creation of new employee using classmethod
+empdata = input("Enter the Firstname-Lastname-Salary of the new Employee: ")
+new_emp1 = Employee.from_string(empdata)
+print(f"Congratulations! New Employee {new_emp1.first} {new_emp1.last} has been registered")
+new_emp1.Details()
 
-# After Applying Raise
-print(emp1.salary)
-print(emp2.salary)
-
-# Changing Raise Amount using classmethod
-Employee.set_raise_amount(1.05)
-
-# Applying for Raise
-emp1.Raise()
-emp2.Raise()
-
-# After Applying Raise
-print(emp1.salary)
-print(emp2.salary)
