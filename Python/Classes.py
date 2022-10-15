@@ -50,4 +50,3 @@ empdata = input("Enter the Firstname-Lastname-Salary of the new Employee: ")
 new_emp1 = Employee.from_string(empdata)
 print(f"Congratulations! New Employee {new_emp1.first} {new_emp1.last} has been registered")
 new_emp1.Details()
-
