@@ -37,3 +37,4 @@ emp2 = Developer("Second", "Emp", int('50_000'))
 # Displaying complete Details
 emp1.Details()
 emp2.Details()
+print(help(Developer))
