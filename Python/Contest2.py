@@ -8,14 +8,14 @@ def main(score):
         else:
             L += 1
             if L==11 and W<=9:
-                return "LOSS"
-    
+                return "LOSS"  
+               
     if W-L >= 2:
         return "WIN"
     elif L-W >=2:
         return "LOSS"
 
 for _ in range(int(input())):
-    score_raw = list(input())
-    score = [eval(num) for num in score_raw]
+    score = list(input())
+    score = [eval(num) for num in score]
     print(main(score))
