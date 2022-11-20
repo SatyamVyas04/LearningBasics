@@ -2,6 +2,9 @@
 #include <conio.h>
 
 int main(){
+    // there are no strings in C. Only character array
+    // just change the datatype below to make an array
+    // of one type values/elements
     int array[5] = {0, 0, 0, 0, 0};
     array[0] = inp(0);
     array[1] = inp(1);
