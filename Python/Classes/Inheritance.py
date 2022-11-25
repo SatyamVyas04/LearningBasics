@@ -1,7 +1,4 @@
 # Creating Employee Classes
-from socket import MSG_NOSIGNAL
-
-
 class Employee:
     raise_amount = 1.04
     n_employees = 0
