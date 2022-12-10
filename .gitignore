@@ -1,1 +1,4 @@
 .vscode
+__pycache__
+Python/PySHop
+.DS_Store
