@@ -1,12 +1,13 @@
 # include <stdio.h>
 int main(){
-float a, b;
+int a, b;
 printf("Enter a and b (comma seperated): ");
-scanf("%f, %f", &a, &b);
-printf("Sum = %f\n", a+b);
-printf("Difference = %f\n", a-b);
-printf("Product = %f\n", a*b);
-printf("Quotient = %4.5f\n", a/b);
+scanf("%d, %d", &a, &b);
+printf("Sum = %d\n", a+b);
+printf("Difference = %d\n", a-b);
+printf("Product = %d\n", a*b);
+printf("Quotient = %d\n", a/b);
+printf("Remainder = %d\n", a%b);
 return 0;
 
 }
