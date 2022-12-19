@@ -2,7 +2,7 @@
 
 int prime(int n){
 	int d = 3;
-	for (d; d<=n/2; d++){
+	for (d; d<=n/2; d+=2){
 		if(n%d==0){
 			return 0;
 		}
@@ -17,6 +17,8 @@ int main(){
 	// making a odd
 	if (a%2==0){
 		a++;	
+	}else if(a == 1){
+		a+=2;	
 	}
 	// traversing among the odd numbers
 	while (a<b-2){
