@@ -2,8 +2,9 @@
 #include <math.h>
 #include <stdbool.h>
 int divsum(int n){
-    int root = pow(n, 0.5), sum=0;
-    for(int i=2; i<root; i++){
+    int sum=1, lim = n/2; // sum is taken as 1 to start with
+    // to account for the one that we miss in the loop
+    for(int i=2; i<=lim; i++){
         if(n%i==0){
             sum+=i;
         }

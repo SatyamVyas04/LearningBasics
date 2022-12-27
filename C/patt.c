@@ -1,13 +1,13 @@
 # include <stdio.h>
 
-void pattern(int half){
-	for(int x = -half; x<=half; x++){
+void pattern(int n){
+	for(int x = -n; x<=n; x++){
 		if (x == 0){
 			continue;
 		}
 		printf("\n");
-		for(int y = -half; y<=half; y++){
-			if (y-x>half || x+y>half || x-y>half || -x-y>half){
+		for(int y = -n; y<=n; y++){
+			if (y-x>n || x+y>n || x-y>n || -x-y>n){
 				printf(" * ");
 			}else if(y == 0){
 				printf("");
