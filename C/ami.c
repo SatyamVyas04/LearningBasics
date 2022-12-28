@@ -2,14 +2,13 @@
 #include <math.h>
 #include <stdbool.h>
 int divsum(int n){
-    int sum=1, lim = n/2; // sum is taken as 1 to start with
-    // to account for the one that we miss in the loop
-    for(int i=2; i<=lim; i++){
-        if(n%i==0){
-            sum+=i;
-        }
-    }
-    return sum;
+    int sum = 0, half = n/2;
+	for(int i=1; i<=half; i++){
+		if (n%i==0){
+			sum+=i;
+		}
+	}
+	return sum;
 }
 
 bool amicable(int a, int b){
@@ -22,12 +21,13 @@ bool amicable(int a, int b){
 
 int main() {
     int a, b;
-    printf("Amicable Test:\nEnter 2 numbers <a, b>: ");
+    printf("==> Amicable Test:\nEnter 2 numbers <a, b>: ");
     scanf("%d, %d", &a, &b);
     if (amicable(a, b)==true){
-        printf("Yes\n");
+        printf("\nYES, the given numbers %d and %d are AMICABLE\n", a, b);
     }else{
-        printf("No\n");
+        printf("\nNO, the given numbers %d and %d are not AMICABLE\n", a, b);
     }
     return 0;
 }
+
