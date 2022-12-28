@@ -6,9 +6,13 @@ void print(int i){
 }
 
 int perf(int n){
-	int sum = 0, half = n/2;
+	int sum = 1, half = n/2;
 	printf("Divisors of %d are:\n", n);
-	for(int i=1; i<=half; i++){
+	// Special Case
+	if (n==1){
+		print(1);
+	}
+	for(int i = 2; i<=half; i++){
 		if (n%i==0){
 			print(i);
 			sum+=i;
