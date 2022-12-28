@@ -30,4 +30,4 @@ int main() {
         printf("No");
     }
     return 0;
-} // ERROR AA RHA HAI KUCH...
+}
