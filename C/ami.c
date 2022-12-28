@@ -25,9 +25,9 @@ int main() {
     printf("Amicable Test:\nEnter 2 numbers <a, b>: ");
     scanf("%d, %d", &a, &b);
     if (amicable(a, b)==true){
-        printf("Yes");
+        printf("Yes\n");
     }else{
-        printf("No");
+        printf("No\n");
     }
     return 0;
 }
