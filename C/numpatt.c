@@ -1,11 +1,5 @@
-// Online C compiler to run C program online
 #include <stdio.h>
-
-int main() {
-    int rows;
-    printf("Enter n(rows): ");
-    scanf("%d", &rows);
-    
+void patt(int rows){
     for(int row = 1; row<=rows; row++){
         for(int col = rows - row; col>0; col-- ){
             printf("   ");
@@ -15,5 +9,12 @@ int main() {
         }
         printf("\n");
     }
+}
+
+int main() {
+    int rows;
+    printf("Enter n(rows): ");
+    scanf("%d", &rows);
+    patt(rows);
     return 0;
 }
