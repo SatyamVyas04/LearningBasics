@@ -24,10 +24,12 @@ int main() {
     printf("Enter N: ");
     scanf("%d", &n);
     int arr[n];
+    printf("First %d terms of Recaman Series are ", n);
     for(int i = 1; i<=n; i++){
         int ans = recaman(i, arr);
         arr[i]=ans;
-        printf("%d\n", ans);
+        printf("%d ", ans);
     }
+    printf("\n");
     return 0;
 }
