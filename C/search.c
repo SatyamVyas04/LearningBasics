@@ -2,6 +2,29 @@
 int counter = 0;
 int *p1 = &counter;
 
+int binary(int array[], int n, int key){
+	int low = 0;
+	int high = n - 1;
+	int mid = (low+high)/2;
+	while (low <= high) {
+		*p1+=1;
+		if(array[mid] < key){
+			low = mid + 1;
+		}else if (array[mid] == key){
+			return mid;
+			break;
+		}else{
+			high = mid - 1;
+		}
+		//for next iteration
+		mid = (low + high)/2;
+		//base case to break out
+		if(low > high){
+			return -1;
+		}
+	}
+}
+
 int linear(int list[], int n, int key){
 	for(int i=0; i<n; i++){
 		*p1+=1;
@@ -75,6 +98,15 @@ int main(){
 		printf("==> KEY NOT Found after %d comparisons\n", *p1);
 	}
 	
+	//Binary Sort
+	*p1 = 0;
+	printf("\n//USING BINARY SEARCH: \n");
+	index = binary(arr, n, key);
+	if (index!=-1){
+		printf("==> KEY Found at Index %d after %d comparisons...\n", index, *p1);
+	}else{
+		printf("==> KEY NOT Found after %d comparisons\n", *p1);
+	}
 }
 
 
