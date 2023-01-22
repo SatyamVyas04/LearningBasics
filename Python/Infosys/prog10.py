@@ -11,21 +11,20 @@ for i in arr:
         
 keys = list(count.keys())
 values = list(count.values()) 
-maxval = 0 
-anskey = "" 
+maxfreq = 0 
+max_repeating_word = "" 
+
 for i in range(len(values)):
     current_value = values[i]
     current_word = keys[i]
-    if current_value>maxval:
-        maxval = current_value
-        anskey = current_word
-    elif current_value == maxval:
-        if len(current_word)>len(anskey):
-            maxval = current_value
-            anskey = current_word
-        else:
-            pass
+    if current_value>maxfreq:
+        maxfreq = current_value
+        max_repeating_word = current_word
+    elif current_value == maxfreq:
+        if len(current_word)>len(max_repeating_word):
+            maxfreq = current_value
+            max_repeating_word = current_word
         
-ansfreq = maxval
-answord = anskey
+ansfreq = maxfreq
+answord = max_repeating_word
 print(answord, ansfreq)
