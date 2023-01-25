@@ -1,7 +1,6 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <math.h>
-// add void printer to remove redundant printer
 
 void add(int rows, int cols, int a[rows][cols], int b[rows][cols])
 {
@@ -14,7 +13,7 @@ void add(int rows, int cols, int a[rows][cols], int b[rows][cols])
             c[i][j] = a[i][j] + b[i][j];
         }
     }
-    printf("Addition of matrices: \n");
+    printf("\n==> Addition of matrices: \n");
     for (i = 0; i < rows; i++)
     {
         for (j = 0; j < cols; j++)
@@ -36,7 +35,7 @@ void subtract(int rows, int cols, int a[rows][cols], int b[rows][cols])
             c[i][j] = a[i][j] - b[i][j];
         }
     }
-    printf("Subtraction of matrices: \n");
+    printf("\n==> Subtraction of matrices: \n");
     for (i = 0; i < rows; i++)
     {
         for (j = 0; j < cols; j++)
@@ -68,7 +67,7 @@ void multiply(int rows, int cols, int a[rows][cols], int b[rows][cols])
             }
         }
     }
-    printf("Multiplication of matrices: \n");
+    printf("\n==> Multiplication of matrices: \n");
     for (i = 0; i < rows; i++)
     {
         for (j = 0; j < cols; j++)
@@ -114,7 +113,16 @@ void input2DArray(int rows, int cols, int arr[rows][cols])
             scanf("%d", &arr[i][j]);
         }
     }
+    for (int i = 0; i < rows; i++)
+    {
+        for (int j = 0; j < cols; j++)
+        {
+            printf("%d ", arr[i][j]);
+        }
+        printf("\n");
+    }
 }
+
 
 int main()
 {
@@ -133,7 +141,7 @@ int main()
     multiply(rows, cols, A, B);
     int norma = norm(rows, cols, A);
     int normb = norm(rows, cols, B);
-    printf("Norm of A = %d", norma);
-    printf("\nNorm of B = %d", normb);
+    printf("==> Norm of A = %d\n", norma);
+    printf("==> Norm of B = %d\n", normb);
     return 0;
 }
