@@ -40,6 +40,6 @@ int main(){
 	for(i=0;i< n;i++){
         det = det * a[i][i];
     }
-	printf("\n\nDeterminant of given matrix is: %0.3f", det);
+	printf("\n\nDeterminant of given matrix is: %0.3f\n", det);
 	return 0;
 }
