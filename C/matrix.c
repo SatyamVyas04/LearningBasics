@@ -37,6 +37,10 @@ void subtract(int rows, int cols, int a[rows][cols], int b[rows][cols]){
 }
 
 void multiply(int rows, int cols, int a[rows][cols], int b[rows][cols]){
+    if(rows!=cols){
+        printf("\n==> Multiplication is not possible...\n");
+        return;
+    }
     int i, j, k;
     int c[rows][cols];
     for (i = 0; i < rows; i++){
@@ -94,6 +98,7 @@ void input2DArray(int rows, int cols, int arr[rows][cols]){
             scanf("%d", &arr[i][j]);
         }
     }
+    printf("==> The Matrix: \n");
     for (int i = 0; i < rows; i++){
         for (int j = 0; j < cols; j++){
             printf("%d ", arr[i][j]);
@@ -130,7 +135,6 @@ int main(){
     add(rows, cols, A, B);
     subtract(rows, cols, A, B);
     multiply(rows, cols, A, B);
-    
 }
 
 
