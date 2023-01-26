@@ -49,14 +49,16 @@ int main(){
     //sort
     bubbleSort(emp, n);
     
-    //print matrix
-	printf("==> The Employee Table \n(ID, RetirementYear)\n");
-	for (int i = 0; i < n; i++)
-    {
-        for (int j = 0; j < 2; j++)
-        {
-            printf("%4d ", emp[i][j]);
-        }
+    //print
+    for(int i = 0; i<n; i++){
+        int current_retirement_year = emp[i][1];
+        printf("Year of Retirement %d\n", current_retirement_year);
+        printf("List of Employees: ");
+        for(int j = 0; j<n; j++){
+            if (emp[j][1]==current_retirement_year){
+                printf("%d ", emp[j][0]);
+            }
+        }        
         printf("\n");
     }
 }
