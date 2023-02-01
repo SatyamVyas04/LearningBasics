@@ -1,8 +1,8 @@
 #include <stdio.h>
 int main()
 {
-    char str[100], word[100], array[10][30];
-    int i = 0, j = 0, k = 0, len1 = 0, len2 = 0, l = 0;
+    char str[100], array[10][30];
+    int i = 0, j = 0, k = 0, len1 = 0;
     printf("Enter the string: \n");
     scanf("%[^\n]", str);
 

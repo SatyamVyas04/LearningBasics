@@ -1,10 +1,18 @@
 #include <stdio.h>
+#include <string.h>
+
 int main()
 {
-    char str[100], word[100], array[10][30];
-    int i = 0, j = 0, k = 0, len1 = 0, len2 = 0, l = 0;
+    char str[100], array[10][30];
+    char replaced[30], new_word[30];
+    int i = 0, j = 0, k = 0;
+
     printf("Enter the string: \n");
-    scanf("%[^\n]", str);
+    gets(str);
+    printf("Word to Find: \n");
+    scanf("%s", replaced);
+    printf("Word to Replace: \n");
+    scanf("%s", new_word);
 
     for (i = 0; str[i] != '\0'; i++)
     {
@@ -23,9 +31,18 @@ int main()
     array[k][j] = '\0';
 
     // Replace Word
-    char replace[100];
-    printf("Enter the word to be replaced: ");
-    gets(replace);
-    
+    for (i = 0; i <= k; i++)
+    {
+        if (strcmp(array[i], replaced) == 0)
+        {
+            strcpy(array[i], new_word);
+        }
+    }
+
+    printf("String after replacing the word: \n");
+    for (i = 0; i <= k; i++)
+    {
+        printf("%s ", array[i]);
+    }
     return 0;
 }
