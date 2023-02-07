@@ -2,7 +2,7 @@
 #include <string.h>
 #include <stdbool.h>
 
-#define MAX_EMPLOYEES 5
+#define MAX_EMPLOYEES 10
 #define NAME_LENGTH 20
 #define RETIREMENT_AGE 60
 
@@ -67,7 +67,7 @@ int main()
     }
 
     // Input 5 amendments
-    for (int i = 0; i < 3; i++)
+    for (int i = 0; i < 5; i++)
     {
         Amendment amendment;
         printf("Enter amendment %d\n", i + 1);
