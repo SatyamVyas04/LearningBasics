@@ -37,7 +37,7 @@ typedef struct
 
 bool isRetired(Date dob)
 {
-    int age = 2022 - dob.year;
+    int age = 2023 - dob.year;
     if (age >= RETIREMENT_AGE)
     {
         return true;
