@@ -7,6 +7,29 @@
 // price is output, otherwise the old price is output together with a warning message.
 
 int main(){
+    int n;
+    printf("Enter N: ");
+    scanf("%d", &n);
 
+    float arr[n];
+    for(int i = 0; i<n; i++){
+        printf("Enter Original Price of %d item: ", i+1);
+        scanf("%f", arr[i]);
+    }
+
+    float sale[n];
+    for(int i = 0; i<n; i++){
+        int round = arr[i]*1.1;
+        sale[n] = round - 0.01;
+    }
+    
+    printf("ITEM\tOriginal Price\tSale Price");
+    for(int i = 0; i<n; i++){
+        if(sale[n]<arr[n]){
+            printf("%-4d\t%15f\t%10f\n", i, arr[i], sale[i]);
+        }else{
+            printf("%-4d\t%15f\t%10f - ERROR\n", i, arr[i], sale[i]);
+        }
+    }
 
 }
