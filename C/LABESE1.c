@@ -1,4 +1,5 @@
 #include <stdio.h>
+#include <math.h>
 
 // Write a program which inputs N followed by the prices of N items. The program should
 // output the price at which each item is offered in a sale. The sale price is calculated as follows.
@@ -14,21 +15,21 @@ int main(){
     float arr[n];
     for(int i = 0; i<n; i++){
         printf("Enter Original Price of %d item: ", i+1);
-        scanf("%f", arr[i]);
+        scanf("%f", &arr[i]);
     }
 
     float sale[n];
     for(int i = 0; i<n; i++){
-        int round = arr[i]*1.1;
-        sale[n] = round - 0.01;
+        int r = round(arr[i]*0.9);
+        sale[i] = r - 0.01;
     }
     
-    printf("ITEM\tOriginal Price\tSale Price");
+    printf("\nITEM\tOriginal Price\tSale Price\n");
     for(int i = 0; i<n; i++){
         if(sale[n]<arr[n]){
-            printf("%-4d\t%15f\t%10f\n", i, arr[i], sale[i]);
+            printf("%-4d\t%14.2f\t%10.2f\n", i, arr[i], sale[i]);
         }else{
-            printf("%-4d\t%15f\t%10f - ERROR\n", i, arr[i], sale[i]);
+            printf("%-4d\t%14.2f\t%10.2f - ERROR\n", i, arr[i], sale[i]);
         }
     }
 
