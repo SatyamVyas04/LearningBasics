@@ -20,13 +20,17 @@ int main(){
 
     float sale[n];
     for(int i = 0; i<n; i++){
-        int r = round(arr[i]*0.9);
-        sale[i] = r - 0.01;
+        sale[i] = round(arr[i]*0.9) - 0.01;
     }
     
     printf("\nITEM\tOriginal Price\tSale Price\n");
     for(int i = 0; i<n; i++){
-        if(sale[n]<arr[n]){
+        if(sale[i]<0){
+            printf("%-4d\t%14.2f\t%10.2f - ERROR\n", i, arr[i], sale[i]);
+            continue;
+        }
+        
+        if(sale[i]<arr[i]){
             printf("%-4d\t%14.2f\t%10.2f\n", i, arr[i], sale[i]);
         }else{
             printf("%-4d\t%14.2f\t%10.2f - ERROR\n", i, arr[i], sale[i]);
