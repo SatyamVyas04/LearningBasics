@@ -1,6 +1,7 @@
 # include <stdio.h>
 
 void pattern(int n){
+	n/=2;
 	for(int x = -n; x<=n; x++){
 		if (x == 0){
 			continue;
