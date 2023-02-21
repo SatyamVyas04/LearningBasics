@@ -6,13 +6,11 @@
 int main(){
     const char *file="carinfo.txt";
     
-    f=fopen(file,"w+");
+    FILE* f=fopen(file,"w+");
     if(f==NULL){
         printf("Error in opening file.\n");
         return -1;
     }
-
-
 
     return 0;
 }
