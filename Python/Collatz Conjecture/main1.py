@@ -22,3 +22,5 @@ print("Max =", round(max))
 
 # Next task = Create a loop for the same
 # Store values of Start and Max to find Largest Max wala Number :)
+# NEW TASK: Learn Graphing and make graphs of this
+# 3D GRAPHS BANANA HAI EKDUM MAST
