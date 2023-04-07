@@ -13,7 +13,8 @@ public class scan {
         System.out.println(str);
 
         String[] words = str.split(" ");
-        System.out.print(words);
+        System.out.println(words);
+
         for (String ret : words) {
             System.out.println(ret);
         }
