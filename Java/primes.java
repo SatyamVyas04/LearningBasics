@@ -1,4 +1,14 @@
 import java.util.*;
+class prime{
+	private int p;
+	public int getp(){
+		return p;
+	}
+	public void setp(int newp){
+		p = newp;
+	}
+}
+
 public class primes {
     static int prime(int n){
         if(n==1) return 0;
@@ -7,7 +17,9 @@ public class primes {
                 return 0;
             }
         }
-        return 1;
+        prime Prime = new prime();
+        Prime.setp(n);
+        return Prime.getp();
     }
 
     public static void main(String[] args){
@@ -22,7 +34,7 @@ public class primes {
             
             System.out.println("Primes: ");
             for(int a: nums){
-                if (prime(a)==1){
+                if (prime(a)!=0){
                     System.out.println(a);
                 }
             }
