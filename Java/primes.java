@@ -30,16 +30,6 @@
 // }
 
 import java.util.*;
-class prime{
-	private int p;
-	public int getp(){
-		return p;
-	}
-	public void setp(int newp){
-		p = newp;
-	}
-}
-
 public class primes {
     static int prime(int n){
         if(n==1) return 0;
@@ -48,9 +38,7 @@ public class primes {
                 return 0;
             }
         }
-        prime Prime = new prime();
-        Prime.setp(n);
-        return Prime.getp();
+        return 1;
     }
 
     public static void main(String[] args){
