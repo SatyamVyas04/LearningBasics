@@ -33,13 +33,54 @@ BankingSystem class:
 */
 import java.util.*;
 public class BankingSystem{
-    BankAcc acc = new BankAcc(111, 10000, 10);
-    System.out.println("--- Welcome to ABC Bank ---");
-    acc.menu();
+    public static void main(String[] args){
+        Scanner sc = new Scanner(System.in);
+
+        System.out.println("--- Welcome to ABC Bank ---");
+
+        System.out.println("Enter your Balance: ");
+        double bal = sc.nextDouble();
+        System.out.println("Enter ROI: ");
+        double roi = sc.nextDouble();
+        System.out.println("Your Bank Account No is 111\n");
+
+        BankAcc acc = new BankAcc(111, bal, roi);
+
+        int opt = 0;
+        do{
+            acc.menu();
+            opt = sc.nextInt();
+
+            if(opt==1){
+                System.out.println("\nEnter the money to be deposited: ");
+                double added = sc.nextDouble();
+                acc.depositmoney(added);
+
+            }else if(opt==2){
+                System.out.println("\nEnter the money to be withdrawn: ");
+                double removed = sc.nextDouble();
+                acc.withdrawmoney(removed);
+
+            }else if(opt==3){
+                System.out.println("\nEnter the number of years: ");
+                int years = sc.nextInt();
+                acc.CI(years);
+
+            }else if(opt==4){
+                acc.balcheck();
+
+            }else if(opt==0){
+                break;
+
+            }else{
+                System.out.println("--- INPUT ERROR ---");
+            }
+        }while(opt!=0);
+        System.out.println("--- Thank you ---");
+    }
 }
 
 class BankAcc{
-    Scanner sc = new Scanner(System.in)
     int accno;
     double balance, ROI;
     // Constructor method
@@ -48,59 +89,34 @@ class BankAcc{
         this.balance = bal;
         this.ROI = r;
     }
-    int menu(){
+    void menu(){
+        System.out.println("\n--- ABC BANK ---"); 
         System.out.println("> Enter 1 to Deposit Money"); 
         System.out.println("> Enter 2 to Withdraw Money"); 
         System.out.println("> Enter 3 to know Compound Interest Money");
         System.out.println("> Enter 4 to Check Balance"); 
         System.out.println("> Enter 0 to Exit: ");
-        int opt = sc.nextInt();
-        if(opt==1){
-            System.out.println("\nEnter the money to be deposited: ");
-            double added = sc.nextDouble();
-            // Method call
-            depositedmoney(added);
-        }else if(opt==2){
-            System.out.println("\nEnter the money to be withdrawn: ");
-            double removed = sc.nextDouble();
-            // Method call
-            withdrawmoney(removed);
-        }else if(opt==3){
-            System.out.println("\nEnter the number of years: ");
-            int years = sc.nextInt();
-            // Method call
-            CI(years);
-        }else if(opt==4){
-            // Method call
-            balcheck();
-        }else if(opt==0){
-            System.out.println("--- THANK YOU!!! ---");
-            return;
-        }else{
-            System.out.println("--- INPUT ERROR ---");
-            return;
-        }
     }
+
     void depositmoney(double added){
         this.balance += added;
         System.out.println(added + " Rupees deposited to your acc."+this.accno);
-        menu();
     }
+    
     void withdrawmoney(double remove){
         this.balance -= remove;
         System.out.println(remove + " Rupees withdrawn from your acc."+this.accno);
-        menu();
     }
+
     void CI(int t){
-        System.out.print("Compound interest on your current balance and rate of interest, after "+n+" years is: ");
+        System.out.print("Compound interest on your current balance and rate of interest, after "+t+" years is: ");
         double p = this.balance;
-        double roi = this.ROI;
-        double amount = p*(Math.pow(1+r/100, 10));
-        System.out.print(amount - p);
-        menu();
+        double r = this.ROI;
+        double amount = p*(Math.pow(1+r/100, t));
+        System.out.println(amount - p);
     }
+
     void balcheck(){
         System.out.println("Current balance in acc."+this.accno+" is "+this.balance);
-        menu();
     }
 }
