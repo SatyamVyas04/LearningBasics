@@ -1,4 +1,4 @@
-public class Main{
+public class userpost{
 	public static void main(String[] args){
 	    User user1 = new User();
 	    user1.username = "TEST";
