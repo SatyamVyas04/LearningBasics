@@ -34,48 +34,49 @@ BankingSystem class:
 import java.util.*;
 public class BankingSystem{
     public static void main(String[] args){
-        Scanner sc = new Scanner(System.in);
+        try (Scanner sc = new Scanner(System.in)) {
+            System.out.println("--- Welcome to ABC Bank ---");
 
-        System.out.println("--- Welcome to ABC Bank ---");
+            System.out.println("Enter your Balance: ");
+            double bal = sc.nextDouble();
+            System.out.println("Enter ROI: ");
+            double roi = sc.nextDouble();
+            System.out.println("Your Bank Account No is 111\n");
 
-        System.out.println("Enter your Balance: ");
-        double bal = sc.nextDouble();
-        System.out.println("Enter ROI: ");
-        double roi = sc.nextDouble();
-        System.out.println("Your Bank Account No is 111\n");
+            BankAcc acc = new BankAcc(111, bal, roi);
 
-        BankAcc acc = new BankAcc(111, bal, roi);
+            int opt = 0;
+            do{
+                acc.menu();
+                opt = sc.nextInt();
 
-        int opt = 0;
-        do{
-            acc.menu();
-            opt = sc.nextInt();
+                if(opt==1){
+                    System.out.println("\nEnter the money to be deposited: ");
+                    double added = sc.nextDouble();
+                    acc.depositmoney(added);
 
-            if(opt==1){
-                System.out.println("\nEnter the money to be deposited: ");
-                double added = sc.nextDouble();
-                acc.depositmoney(added);
+                }else if(opt==2){
+                    System.out.println("\nEnter the money to be withdrawn: ");
+                    double removed = sc.nextDouble();
+                    acc.withdrawmoney(removed);
 
-            }else if(opt==2){
-                System.out.println("\nEnter the money to be withdrawn: ");
-                double removed = sc.nextDouble();
-                acc.withdrawmoney(removed);
+                }else if(opt==3){
+                    System.out.println("\nEnter the number of years: ");
+                    int years = sc.nextInt();
+                    acc.CI(years);
 
-            }else if(opt==3){
-                System.out.println("\nEnter the number of years: ");
-                int years = sc.nextInt();
-                acc.CI(years);
+                }else if(opt==4){
+                    acc.balcheck();
 
-            }else if(opt==4){
-                acc.balcheck();
+                }else if(opt==0){
+                    break;
 
-            }else if(opt==0){
-                break;
+                }else{
+                    System.out.println("--- INPUT ERROR ---");
+                }
+            }while(opt!=0);
+        }
 
-            }else{
-                System.out.println("--- INPUT ERROR ---");
-            }
-        }while(opt!=0);
         System.out.println("--- Thank you ---");
     }
 }

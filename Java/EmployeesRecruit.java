@@ -21,10 +21,10 @@
 //         print req result
 //         exit
          
-import java.util.*;
+// import java.util.*;
 public class EmployeesRecruit{
     public static void main(String[] args){
-        Scanner sc = new Scanner(System.in);
+        // Scanner sc = new Scanner(System.in);
         Employees emp1 = new Employees("A", 10, 20, 30, 10);
         Employees emp2 = new Employees("B", 10, 20, 30, 30);
         Employees emp3 = new Employees("C", 40, 40);
@@ -64,13 +64,12 @@ class Employees{
     
     Employees(String name, int i){
         this.name = name;
-        this.techscore = t;
         this.intscore = i;
         job_profile = "ProjectManager";
     }
     
     void check_recruitment(){
-        switch(this.recruitement_status){
+        switch(this.job_profile){
             case "Programmer":
                 if (this.cwscore + this.aptscore + this.techscore + this.intscore >= 80){
                     this.recruitement_status = true;
@@ -88,9 +87,9 @@ class Employees{
                 break;
         }
         if(this.recruitement_status){
-            System.out.println(this.name": Pass for "+this.job_profile + " post");
+            System.out.println(this.name+": Pass for "+this.job_profile + " post");
         }else{
-            System.out.println(this.name": Failed for "+this.job_profile + " post");
+            System.out.println(this.name+": Failed for "+this.job_profile + " post");
         }
     }
 }

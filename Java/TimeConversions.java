@@ -34,35 +34,36 @@
 import java.util.*;
 public class TimeConversions{
     public static void main(String[] args){
-        Scanner sc = new Scanner(System.in);
-        System.out.println("--- TimeConverter ---");
-        System.out.println("> Enter 1 for Time Input in TotSeconds");
-        System.out.println("> Enter 2 for Time Input in HMS format");
-        System.out.println("> Enter 0 to Exit");
-        System.out.print(">> ");
-        int opt = sc.nextInt();
-        switch(opt){
-            case 1:
-                System.out.print("\nEnter time in total seconds: ");
-                int tot = sc.nextInt();
-                Time time = new Time(tot);
-                time.conversion1();
-                break;
-            case 2:
-                System.out.print("\nEnter time in H M S format: ");
-                int h = sc.nextInt();
-                int m = sc.nextInt();
-                int s = sc.nextInt();
-                Time time2 = new Time(h, m, s);
-                time2.conversion2();
-                break;
-            case 0:
-                System.out.println("\n--- Thank you ---");
-                break;
-            default:
-                System.out.println("\nInput Error!");
-                System.out.println("--- Quiting ---");
-                break;
+        try (Scanner sc = new Scanner(System.in)) {
+            System.out.println("--- TimeConverter ---");
+            System.out.println("> Enter 1 for Time Input in TotSeconds");
+            System.out.println("> Enter 2 for Time Input in HMS format");
+            System.out.println("> Enter 0 to Exit");
+            System.out.print(">> ");
+            int opt = sc.nextInt();
+            switch(opt){
+                case 1:
+                    System.out.print("\nEnter time in total seconds: ");
+                    int tot = sc.nextInt();
+                    Time time = new Time(tot);
+                    time.conversion1();
+                    break;
+                case 2:
+                    System.out.print("\nEnter time in H M S format: ");
+                    int h = sc.nextInt();
+                    int m = sc.nextInt();
+                    int s = sc.nextInt();
+                    Time time2 = new Time(h, m, s);
+                    time2.conversion2();
+                    break;
+                case 0:
+                    System.out.println("\n--- Thank you ---");
+                    break;
+                default:
+                    System.out.println("\nInput Error!");
+                    System.out.println("--- Quiting ---");
+                    break;
+            }
         }
         System.out.println("\n--- End of program ---");
     }
