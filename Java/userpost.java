@@ -2,8 +2,7 @@ public class userpost{
 	public static void main(String[] args){
 	    User user1 = new User();
 	    user1.username = "TEST";
-	    user1.setpass("&&&");
-	    
+    
 	    // Printing Username
 	    System.out.println("username: "+user1.getusr()+"\n"); 
 	  
@@ -30,12 +29,8 @@ public class userpost{
 
 class User{
 	String username;
-	private String password;
 	public String getusr(){
 	    return username;
-	}
-	public void setpass(String pass){
-	    password = pass;
 	}
 	public void likepost(Post post){
 	    post.likes++;
