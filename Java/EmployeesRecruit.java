@@ -21,22 +21,61 @@
 //         print req result
 //         exit
          
-// import java.util.*;
+import java.util.*;
+
 public class EmployeesRecruit{
     public static void main(String[] args){
-        // Scanner sc = new Scanner(System.in);
-        Employees emp1 = new Employees("A", 10, 20, 30, 10);
-        Employees emp2 = new Employees("B", 10, 20, 30, 30);
-        Employees emp3 = new Employees("C", 40, 40);
-        Employees emp4 = new Employees("D", 40, 50);
-        Employees emp5 = new Employees("E", 10);
-        Employees emp6 = new Employees("F", 100);
-        emp1.check_recruitment();
-        emp2.check_recruitment();
-        emp3.check_recruitment();
-        emp4.check_recruitment();
-        emp5.check_recruitment();
-        emp6.check_recruitment();
+        Scanner sc = new Scanner(System.in);
+        System.out.print("> Enter the number of Employees to check: ");
+        int n = sc.nextInt();
+        sc.nextLine(); //Buffer Clear
+
+        Employees[] emps = new Employees[n];
+
+        for(int i = 0; i<n; i++){
+            System.out.println("\n---------------------------------------------");
+            System.out.print("> Enter Name of Emp "+(i+1)+": ");
+            String name = sc.nextLine();
+            System.out.println("> Enter Job Profile of Emp "+(i+1)+": ");
+            System.out.print("  P: Programmer,\n  T: Team Leader,\n  M: Project Manager: ");
+            char jobprof = sc.next().charAt(0);
+            System.out.println("\n> Enter Scores");
+
+            if (jobprof == 'P'){
+                System.out.print("> Enter Course Work Score: ");
+                int cws = sc.nextInt();
+                System.out.print("> Enter Aptitude Test Score: ");
+                int apts = sc.nextInt();
+                System.out.print("> Enter Technical Test Score: ");
+                int tecs = sc.nextInt();
+                System.out.print("> Enter Interview Score: ");
+                int ints = sc.nextInt();
+                emps[i] = new Employees(name, cws, apts, tecs, ints);
+                sc.nextLine(); //Buffer Clear
+
+            }else if (jobprof == 'T'){
+                System.out.print("> Enter Technical Test Score: ");
+                int tecs = sc.nextInt();
+                System.out.print("> Enter Interview Score: ");
+                int ints = sc.nextInt();
+                emps[i] = new Employees(name, tecs, ints);
+                sc.nextLine(); //Buffer Clear
+
+            }else if (jobprof == 'M'){
+                System.out.print("> Enter Interview Score: ");
+                int ints = sc.nextInt();
+                emps[i] = new Employees(name, ints);
+                sc.nextLine(); //Buffer Clear
+            }else{
+                System.out.println("Incorrect Input!");
+            }
+        }
+
+        System.out.println("\n>> Results: ");
+        for(Employees i: emps){
+            i.check_recruitment();
+        }
+        sc.close();
     }
 } 
 
