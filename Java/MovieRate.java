@@ -53,15 +53,16 @@ public class MovieRate{
         		}
         	}
         }
-        System.out.println("+---------------- Movie Details --------------------+");
-        System.out.printf("|%2s|%-10s|%-4s|%-10s|%-10s|%-10s|\n", "Sr", "Name", "Type", "Hero", "Heroine", "Budget");
-        System.out.println("+---------------------------------------------------+");
+        System.out.println("+------------------- Movie Details ------------------------+");
+        System.out.printf("|%-3s|%-10s|%-10s|%-10s|%-10s|%-10s|\n", "Sr", "Name", "Type", "Hero", "Heroine", "Budget");
+        System.out.println("+----------------------------------------------------------+");
         int count = 1;
         for(Movie m: movies){
-        	System.out.printf("|%2d|%-10s|%-4s|%-10s|%-10s|%-10d|\n", count, m.name, m.type, m.hero, m.heroine, m.budget);
+        	System.out.printf("|%-3d|%-10s|%-10s|%-10s|%-10s|%-10d|\n", count, m.name, m.type, m.hero, m.heroine, m.budget);
         	count++;
         }
-        System.out.println("+---------------------------------------------------+");
+        System.out.println("+----------------------------------------------------------+");
+        sc.close();
     }
 }
 

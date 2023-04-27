@@ -36,7 +36,7 @@ public class Temperature{
                 }
             }
         }
-        System.out.println("---- Temperature Report for January ----")
+        System.out.println("---- Temperature Report for January ----");
         System.out.println("> City with Highest Temperature: "+highestcity);
         System.out.println("> On Date: "+(highestdateindex+1));
         System.out.println("> Temperature: "+highest);
