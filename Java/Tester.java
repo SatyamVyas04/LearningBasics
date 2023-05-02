@@ -36,17 +36,26 @@ public class Tester{
             System.out.print("\n");
         }
         
-        int i = 1;
+        int maxint = 0;
+        int currentindex = 0;
+        double maxsalary = 0;
+        
         for(SalariedEmployee s: emps){
-            System.out.println("Details for Employee " + i + ": ");
-            System.out.println("Name: "+ s.getName());
-            System.out.println("Id: "+ s.getId());
-            System.out.println("Age: "+ s.getAge());
-            System.out.println("Salary: "+ s.getempSalary());
-            System.out.println("Status: "+ s.getempStatus());
-            System.out.print("\n");
-            i++;
+            if(s.getempSalary() > maxsalary){
+                maxint = currentindex;
+                maxsalary = s.getempSalary();
+            }
+            currentindex++;
         }
+        
+        SalariedEmployee s = emps[maxint];
+        System.out.println("Details for Employee with Maximum Salary");
+        System.out.println("Name: "+ s.getName());
+        System.out.println("Id: "+ s.getId());
+        System.out.println("Age: "+ s.getAge());
+        System.out.println("Salary: "+ s.getempSalary());
+        System.out.println("Status: "+ s.getempStatus());
+        System.out.print("\n");
     }
 }
 
