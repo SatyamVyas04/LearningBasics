@@ -48,14 +48,28 @@ public class Tester{
             currentindex++;
         }
         
-        SalariedEmployee s = emps[maxint];
-        System.out.println("Details for Employee with Maximum Salary");
+        int i = 1;
+        System.out.println("---------- Details of All Employees ------------");
+        System.out.printf("|%-4s|%-10s|%-5s|%-4s|%-10s|%-8s|\n", "Sr", "Name", "ID", "Age", "Salary", "Status");
+        System.out.println("+----------------------------------------------+");
+
+        for(SalariedEmployee s: emps){
+            System.out.printf("|%-4d|%-10s|%-5s|%-4d|%-10.2f|%-8b|\n", i, s.getName(), s.getId(), s.getAge(), s.getempSalary(), s.getempStatus());
+            i++;
+        }
+        System.out.println("+----------------------------------------------+");
+        
+        SalariedEmployee s = emps[maxint]; // s has Max Salary
+        System.out.println("\nDetails for Employee with Maximum Salary");
         System.out.println("Name: "+ s.getName());
         System.out.println("Id: "+ s.getId());
         System.out.println("Age: "+ s.getAge());
         System.out.println("Salary: "+ s.getempSalary());
-        System.out.println("Status: "+ s.getempStatus());
-        System.out.print("\n");
+        if(s.getempStatus()){
+            System.out.println("Status: Permanent\n");
+        }else{
+            System.out.println("Status: Temporary\n");
+        }
     }
 }
 
