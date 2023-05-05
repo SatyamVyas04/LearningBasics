@@ -8,69 +8,67 @@ public class Mammals {
         System.out.print("Enter the number of Dogs: ");
         num = sc.nextInt();
 
-        Dog[] dogs = new Dog[num]; 
+        Labrador[] labs = new Labrador[10]; 
+        GermanSheperd[] germs = new GermanSheperd[10];
 
+        int labsindex = 0, germanindex = 0;
         int i = 1;
+
         while(i<=num){
-            System.out.print("> Enter 0 for Labrador\n  Enter 1 for GermanSheperd: ");
+            System.out.print("\n>> Enter 0 for Labrador\n   Enter 1 for GermanSheperd: ");
             int choice = sc.nextInt();
-            
+            sc.nextLine(); // Buffer Clear
+
             String c, name, colour; 
             int n, age, l;
             double wt, h;
             
             switch (choice) {
                 case 0:
-                    System.out.print("Enter Dog"+i+"'s Name: ");
+                    System.out.print(">> Enter Dog"+i+"'s Name: ");
                     name = sc.nextLine();
-                    System.out.print("Enter Dog"+i+"'s Age: ");
+                    System.out.print(">> Enter Dog"+i+"'s Age: ");
                     age = sc.nextInt();
-                    System.out.print("Enter Dog"+i+"'s Colour: ");
+                    sc.nextLine(); // Buffer Clear
+                    System.out.print(">> Enter Dog"+i+"'s Colour: ");
                     colour = sc.nextLine();
-                    System.out.print("Enter Dog"+i+"'s Weight: ");
+                    System.out.print(">> Enter Dog"+i+"'s Weight: ");
                     wt = sc.nextDouble();
+                    sc.nextLine(); // Buffer Clear
                     
-                    dogs[i] = new Labrador("Animal", 4, name, age, colour, wt);
+                    labs[labsindex] = new Labrador("Animal", 4, name, age, colour, wt);
+                    labsindex ++;
                     break;
                 
                 case 1:
-                    System.out.print("Enter Dog"+i+"'s Name: ");
+                    System.out.print(">> Enter Dog"+i+"'s Name: ");
                     name = sc.nextLine();
-                    System.out.print("Enter Dog"+i+"'s Age: ");
+                    System.out.print(">> Enter Dog"+i+"'s Age: ");
                     age = sc.nextInt();
-                    System.out.print("Enter Dog"+i+"'s Height: ");
+                    sc.nextLine(); // Buffer Clear
+                    System.out.print(">> Enter Dog"+i+"'s Height: ");
                     h = sc.nextDouble();
-                    System.out.print("Enter Dog"+i+"'s Lifespan: ");
+                    sc.nextLine(); // Buffer Clear
+                    System.out.print(">> Enter Dog"+i+"'s Lifespan: ");
                     l = sc.nextInt();
+                    sc.nextLine(); // Buffer Clear
 
-                    dogs[i] = new GermanSheperd("Animal", 4, name, age, h, l);
+                    germs[germanindex] = new GermanSheperd("Animal", 4, name, age, h, l);
+                    germanindex++;
                     break;
 
                 default:
-                    System.out.println("Incorrect Input! Retry...");
-                    i++;
+                    System.out.println("-- Incorrect Input! Retry...");
+                    i--;
                     break;
             }
-            i--;
+            i++;
         }
 
-        Labrador[] labs = new Labrador[Dog.labradorcount];
-        GermanSheperd[] germs = new GermanSheperd[Dog.germancount];
-
-        int labsindex = 0, germanindex = 0;
-        for(Dog d: dogs){
-            if(d.Type == 'l'){
-                labs[labsindex] = d;
-                labsindex++;
-            }else{
-                germs[germanindex] = d;
-                germanindex++;
-            }
-        }
-
+        System.out.print("\n--> ");
         Dog.popularBreed();
-        System.out.println("Avg Wt of Labradors: " + Labrador.calculateAvgWeight(labs));
-        System.out.println("Avg Ht of Germans: " + GermanSheperd.calculateAvgHeight(germs));
+        System.out.println("--> Avg Wt of Labradors: " + Labrador.calculateAvgWeight(labs));
+        System.out.println("--> Avg Ht of GermanSheperds: " + GermanSheperd.calculateAvgHeight(germs));
         
         sc.close();
     }
@@ -132,6 +130,9 @@ class Labrador extends Dog{
     static double calculateAvgWeight(Labrador[] l){
         double sumwts = 0;
         for(Labrador i:l){
+            if(i == null){
+                continue;
+            }
             sumwts += i.Weight;
         }
         return sumwts/Dog.labradorcount;
@@ -157,6 +158,9 @@ class GermanSheperd extends Dog{
     static double calculateAvgHeight(GermanSheperd[] g){
         double sumhts = 0;
         for(GermanSheperd i:g){
+            if(i == null){
+                continue;
+            }
             sumhts += i.Height;
         }
         return sumhts/Dog.germancount;
