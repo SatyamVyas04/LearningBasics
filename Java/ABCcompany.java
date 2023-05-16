@@ -1,109 +1,90 @@
-// Roles:
-// Parent: Employee
-// SubClasses:
-// - Intern:
-//     0.75 base salary
-// - Clerk:
-//     0.5 base salary
-// - Manager:
-//     2x base salary
-
-// Employee Methods:
-// - getSalary() which return base salary
-// - getBonus() which return bonus amt for that role
-// - Assume bonus for each subclasses
-// - Method Overriding to be used
-
-class Employee{
+class Employee {
     String Name;
-    private double Salary = 10000;
-    private double Bonus = 0;
-    
-    Employee(String name){
+    private float Salary = 10000;
+    private float Bonus;
+
+    Employee(String name) {
         this.Name = name;
     }
-    
-    //Setters
-    void setSalary(double s){
+
+    // Setters
+    void setSalary(float s) {
         this.Salary = s;
     }
-    
-    void setBonus(double b){
+
+    void setBonus(float b) {
         this.Bonus = b;
     }
-    
-    //Getters
-    double getSalary(){
+
+    // Getters
+    float getSalary() {
         return this.Salary;
     }
-    
-    double getBonus(){
+
+    float getBonus() {
         return this.Bonus;
     }
 }
 
-class Intern extends Employee{
-    this.setBonus(0.1); //10% of salary
-    
-    Intern(String name){
+class Intern extends Employee {
+    Intern(String name) {
         super(name);
+        super.setBonus(0.1f); // 10% of salary
+        super.setSalary(super.getSalary() * 0.75f); // Setting Salary based on role
     }
-    
-    //Setting Salary based on role
-    this.setSalary(super.getSalary()*0.75);
-    
-    //Methods
-    void getSalary(){
-        System.out.println("The Salary for Intern " + this.Name + " = " + super.getSalary());
+
+    // Methods
+    @Override
+    float getSalary() {
+        return super.getSalary();
     }
-    
-    void getBonus(){
-        System.out.println("The Bonus for Intern " + this.Name + " = " + super.getBonus());
+
+    @Override
+    float getBonus() {
+        return super.getBonus();
     }
 }
 
-class Clerk extends Employee{
-    this.setBonus(0.05); //5% of salary
-    
-    Clerk(String name){
+class Clerk extends Employee {
+    Clerk(String name) {
         super(name);
+        super.setBonus(0.05f); // 5% of salary
+        super.setSalary(super.getSalary() * 0.5f); // Setting Salary based on role
     }
-    
-    //Setting Salary based on role
-    this.setSalary(super.getSalary()*0.5); 
-    
-    //Methods
-    void getSalary(){
-        System.out.println("The Salary for Clerk " + this.Name + " = " + super.getSalary());
+
+    // Methods
+    @Override
+    float getSalary() {
+        return super.getSalary();
     }
-    
-    void getBonus(){
-        System.out.println("The Bonus for Clerk " + this.Name + " = " + super.getBonus());
+
+    @Override
+    float getBonus() {
+        return super.getBonus();
     }
 }
 
-class Manager extends Employee{
-    this.setBonus(0.2); //20% of salary
-    
-    Manager(String name){
+class Manager extends Employee {
+    Manager(String name) {
         super(name);
+        super.setBonus(0.2f); // 20% of salary
+        super.setSalary(super.getSalary() * 2f); // Setting Salary based on role
     }
-    
-    //Setting Salary based on role
-    this.setSalary(super.getSalary()*2); 
-    
-    //Methods
-    void getSalary(){
-        System.out.println("The Salary for Manager " + this.Name + " = " + super.getSalary());
+
+    // Methods
+    @Override
+    float getSalary() {
+        return super.getSalary();
     }
-    
-    void getBonus(){
-        System.out.println("The Bonus for Manager " + this.Name + " = " + super.getBonus());
+
+    @Override
+    float getBonus() {
+        return super.getBonus();
     }
 }
 
-public class ABCcompany{
-    public static void main(String args[]){
+public class ABCcompany {
+    public static void main(String[] args) {
         System.out.println("No Errors so far!");
     }
 }
