@@ -33,6 +33,11 @@ class Circle extends Shape{
     double getPerimeter(){
         return this.Perimeter;
     }
+    
+    @Override
+    double getSide(){
+        return this.Radius;
+    }
 }
 
 
@@ -51,6 +56,11 @@ class Triangle extends Shape{
     @Override
     double getPerimeter(){
         return this.Perimeter;
+    }
+    
+    @Override
+    double getSide(){
+        return this.Side;
     }
 }
 
@@ -71,6 +81,11 @@ class Pentagon extends Shape{
     double getPerimeter(){
         return this.Perimeter;
     }
+    
+    @Override
+    double getSide(){
+        return this.Side;
+    }
 }
 
 public class Shapes{
@@ -81,14 +96,17 @@ public class Shapes{
         Pentagon pentagon = new Pentagon(10);
         
         System.out.println("\nDetails for Circle: ");
+        System.out.println("Radius: " + circle.getSide());
         System.out.println("Area: " + circle.getArea());
         System.out.println("Perimeter: " + circle.getPerimeter());
         
         System.out.println("\nDetails for Triangle: ");
+        System.out.println("Side: " + triangle.getSide());
         System.out.println("Area: " + triangle.getArea());
         System.out.println("Perimeter: " + triangle.getPerimeter());
         
         System.out.println("\nDetails for Pentagon: ");
+        System.out.println("Side: " + pentagon.getSide());
         System.out.println("Area: " + pentagon.getArea());
         System.out.println("Perimeter: " + pentagon.getPerimeter());
         
