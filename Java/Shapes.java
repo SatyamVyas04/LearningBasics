@@ -96,19 +96,19 @@ public class Shapes{
         Pentagon pentagon = new Pentagon(10);
         
         System.out.println("\nDetails for Circle: ");
-        System.out.println("Radius: " + circle.getSide());
-        System.out.println("Area: " + circle.getArea());
-        System.out.println("Perimeter: " + circle.getPerimeter());
+        System.out.println("Radius: " + circle.getSide() + " units");
+        System.out.println("Area: " + circle.getArea() + " units\u00b2");
+        System.out.println("Perimeter: " + circle.getPerimeter() + " units");
         
         System.out.println("\nDetails for Triangle: ");
-        System.out.println("Side: " + triangle.getSide());
-        System.out.println("Area: " + triangle.getArea());
-        System.out.println("Perimeter: " + triangle.getPerimeter());
+        System.out.println("Side: " + triangle.getSide() + " units");
+        System.out.println("Area: " + triangle.getArea() + " units\u00b2");
+        System.out.println("Perimeter: " + triangle.getPerimeter() + " units");
         
         System.out.println("\nDetails for Pentagon: ");
-        System.out.println("Side: " + pentagon.getSide());
-        System.out.println("Area: " + pentagon.getArea());
-        System.out.println("Perimeter: " + pentagon.getPerimeter());
+        System.out.println("Side: " + pentagon.getSide() + " units");
+        System.out.println("Area: " + pentagon.getArea() + " units\u00b2");
+        System.out.println("Perimeter: " + pentagon.getPerimeter() + " units");
         
     }
 }
