@@ -3,7 +3,6 @@ import java.util.*;
 abstract class Marks{
     double s1, s2, s3, s4, s5, s6, s7;
     abstract double getPercentage();
-    abstract void sort();
 }
 
 class A extends Marks{
@@ -14,28 +13,6 @@ class A extends Marks{
     }
     double getPercentage(){
         return (s1+s2+s3)/3;
-    }
-    void sort(){
-        String[] arrnames = {"Subject1", "Subject2", "Subject3", "Subject4", "Subject5", "Subject6", "Subject7"};
-        double [] arr = {s1, s2, s3, s4, s5, s6, s7};
-        int n = 7;
-        for (int i = 0; i < n - 1; i++){
-            for (int j = 0; j < n - i - 1; j++){
-                if (arr[j] > arr[j + 1]) {
-                    
-                    double temp = arr[j];
-                    arr[j] = arr[j + 1];
-                    arr[j + 1] = temp;
-                    
-                    String temp2 = arrnames[j];
-                    arrnames[j] = arrnames[j + 1];
-                    arrnames[j + 1] = temp2;
-                }
-            }
-        }
-        for(int i = 6; i>=4; i--){
-            System.out.println(arrnames[i] + ": " + arr[i]);
-        }
     }
 }
 
@@ -48,28 +25,6 @@ class B extends Marks{
     }
     double getPercentage(){
         return (s4+s5+s6+s7)/4;
-    }
-    void sort(){
-        String[] arrnames = {"Subject1", "Subject2", "Subject3", "Subject4", "Subject5", "Subject6", "Subject7"};
-        double [] arr = {s1, s2, s3, s4, s5, s6, s7};
-        int n = 7;
-        for (int i = 0; i < n - 1; i++){
-            for (int j = 0; j < n - i - 1; j++){
-                if (arr[j] > arr[j + 1]) {
-                    
-                    double temp = arr[j];
-                    arr[j] = arr[j + 1];
-                    arr[j + 1] = temp;
-                    
-                    String temp2 = arrnames[j];
-                    arrnames[j] = arrnames[j + 1];
-                    arrnames[j + 1] = temp2;
-                }
-            }
-        }
-        for(int i = 6; i>=3; i--){
-            System.out.println(arrnames[i] + ": " + arr[i]);
-        }
     }
 }
 
@@ -100,19 +55,41 @@ public class School{
         
         Marks student2 = new B(s4, s5, s6, s7);
         
-        System.out.println("\nPercentage of Student 1: " + student1.getPercentage());
-        System.out.println("Percentage of Student 2: " + student2.getPercentage());
+        System.out.printf("\nPercentage of Student 1: %.3f\n", student1.getPercentage());
+        System.out.printf("\nPercentage of Student 2: %.3f\n", student2.getPercentage());
         
         if(student1.getPercentage() >= student2.getPercentage()){
             System.out.println("\nMarks of Student A:-");
-            student1.sort();
+            sort(student1);
             System.out.println("\nMarks of Student B:-");
-            student2.sort();
+            sort(student2);
         }else{
             System.out.println("\nMarks of Student B:-");
-            student2.sort();
+            sort(student2);
             System.out.println("\nMarks of Student A:-");
-            student1.sort();
+            sort(student1);
+        }
+    }
+    static void sort(Marks m){
+        String[] arrnames = {"Subject1", "Subject2", "Subject3", "Subject4", "Subject5", "Subject6", "Subject7"};
+        double [] arr = {m.s1, m.s2, m.s3, m.s4, m.s5, m.s6, m.s7};
+        int n = 7;
+        for (int i = 0; i < n - 1; i++){
+            for (int j = 0; j < n - i - 1; j++){
+                if (arr[j] > arr[j + 1]) {
+                    
+                    double temp = arr[j];
+                    arr[j] = arr[j + 1];
+                    arr[j + 1] = temp;
+                    
+                    String temp2 = arrnames[j];
+                    arrnames[j] = arrnames[j + 1];
+                    arrnames[j + 1] = temp2;
+                }
+            }
+        }
+        for(int i = 6; i>=4; i--){
+            System.out.println(arrnames[i] + ": " + arr[i]);
         }
     }
 }
