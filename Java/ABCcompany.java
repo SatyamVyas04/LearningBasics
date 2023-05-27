@@ -85,6 +85,22 @@ class Manager extends Employee {
 
 public class ABCcompany {
     public static void main(String[] args) {
-        System.out.println("No Errors so far!");
+        Employee x = new Intern("X");
+        Employee y = new Clerk("Y");
+        Employee z = new Manager("Z");
+        System.out.println("\n> Salary of Intern " + x.Name + " is " + x.getSalary());
+        System.out.println("> Bonus of Intern " + x.Name + " is " + x.getBonus() + "%");
+        System.out.println("\n> Salary of Clerk " + y.Name + " is " + y.getSalary());
+        System.out.println("> Bonus of Clerk " + y.Name + " is " + y.getBonus() + "%");
+        System.out.println("\n> Salary of Manager " + z.Name + " is " + z.getSalary());
+        System.out.println("> Bonus of Manager " + z.Name + " is " + z.getBonus() + "%");
+
+        System.out.println("\n> Final Salary after bonus: ");
+        x.setSalary(x.getSalary()*(1+x.getBonus()));
+        y.setSalary(y.getSalary()*(1+y.getBonus()));
+        z.setSalary(z.getSalary()*(1+z.getBonus()));
+        System.out.println("> Salary of Intern " + x.Name + " is " + x.getSalary());
+        System.out.println("> Salary of Clerk " + y.Name + " is " + y.getSalary());
+        System.out.println("> Salary of Manager " + z.Name + " is " + z.getSalary());
     }
 }
