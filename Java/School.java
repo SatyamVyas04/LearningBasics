@@ -60,17 +60,17 @@ public class School{
         
         if(student1.getPercentage() >= student2.getPercentage()){
             System.out.println("\nMarks of Student A:-");
-            sort(student1);
+            sort(student1, 4);
             System.out.println("\nMarks of Student B:-");
-            sort(student2);
+            sort(student2, 3);
         }else{
             System.out.println("\nMarks of Student B:-");
-            sort(student2);
+            sort(student2, 3);
             System.out.println("\nMarks of Student A:-");
-            sort(student1);
+            sort(student1, 4);
         }
     }
-    static void sort(Marks m){
+    static void sort(Marks m, int limit){
         String[] arrnames = {"Subject1", "Subject2", "Subject3", "Subject4", "Subject5", "Subject6", "Subject7"};
         double [] arr = {m.s1, m.s2, m.s3, m.s4, m.s5, m.s6, m.s7};
         int n = 7;
@@ -88,7 +88,7 @@ public class School{
                 }
             }
         }
-        for(int i = 6; i>=4; i--){
+        for(int i = 6; i>=limit; i--){
             System.out.println(arrnames[i] + ": " + arr[i]);
         }
     }
