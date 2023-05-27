@@ -13,7 +13,7 @@ class HumanPlayer extends Player{
 
     int getGuess(){
         int guess;
-        System.out.print("> Enter your Guess" + this.name + ": ");
+        System.out.print("> Enter your Guess " + this.name + ": ");
         guess = sc.nextInt();
         sc.nextLine(); // Buffer Clear
         return guess;
@@ -99,16 +99,16 @@ public class GuessGame{
     }
 
     static void play(Player player1, Player player2){
-        int guess1=101, guess2=101;
+        int guess1=0, guess2=0;
         boolean anscheck;
         String winner = "NULL";
 
         Random random = new Random();
         // int answer = random.nextInt(100) + 1;
         int answer = 10;
-
         System.out.println("\n> Random Number between 1 to 100 has been chosen!");
-        while(guess1!=answer && guess2!=answer){
+
+        while(true){
             System.out.println("\n> " + player1.name + "'s Turn:- ");
             guess1 = player1.getGuess();
             if(Checkanswer(guess1, answer)){
