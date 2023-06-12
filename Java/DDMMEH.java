@@ -15,7 +15,7 @@ class DayError extends Exception{
 public class DDMMEH {
     public static String changeformat(String numericDate) throws MonthError, DayError{
         String[] months = {
-                "January", "February", "March", "April", "May", "June",
+                "", "January", "February", "March", "April", "May", "June",
                 "July", "August", "September", "October", "November", "December"
         };
 
@@ -51,6 +51,7 @@ public class DDMMEH {
 
         System.out.println("Enter the number of dates you want to enter: ");
         int n = sc.nextInt();
+        sc.nextLine();
 
         for (int i = 0; i<n; i++){
             date = sc.nextLine();
@@ -60,11 +61,11 @@ public class DDMMEH {
             }
             
             catch (MonthError e) {
-                System.out.println("Error!!! --->" + date + ": " + e.getmsg());
+                System.out.println("Error!!! --->" + date + ": " + e.getMessage());
             }catch (DayError e) {
-                System.out.println("Error!!! --->" + date + ": " + e.getmsg());
+                System.out.println("Error!!! --->" + date + ": " + e.getMessage());
             }catch (NumberFormatException e) {
-                System.out.println("Error!!! --->" + date + ": " + e.getmsg());
+                System.out.println("Error!!! --->" + date + ": " + e.getMessage());
             }
         }
     }
