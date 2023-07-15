@@ -27,14 +27,6 @@ body {
     background-color:darkgray;
   }
   #todaydate {
-    size: 1.4em;
     float: right;
-  }
-  a:link {
-    color: blue;
-  }
-  a:hover{
-    background-color: aqua;
-    color: chocolate;
   }
   
