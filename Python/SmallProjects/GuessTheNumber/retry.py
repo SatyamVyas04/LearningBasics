@@ -7,11 +7,11 @@ while guesses>0:
     g = int(input(f"=> Enter your {11 - guesses} guess: "))
     # Break Case
     if g==num:
-        print("=> Correct Guess!!!")
+        print("\n=> Correct Guess!!!")
         break
     
     # Difference
-    diff = abs(closest-g)
+    diff = abs(num-g)
     
     # Until a warm is found
     if closest == 0: 
@@ -20,6 +20,7 @@ while guesses>0:
             closest = diff
         else:
             print("--> COLD!")
+        guesses-=1
         continue 
         
     
@@ -29,3 +30,7 @@ while guesses>0:
     else:
         print("--> COLDER!")
     guesses-=1
+else:
+    print(f"\n=> Oh No! You ran out of guesses...")
+    print(f"=> The Correct Ans was {num}")
+    
