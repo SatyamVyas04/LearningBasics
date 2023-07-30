@@ -24,3 +24,11 @@ Ms Davis
 Mrs. Robinson
 Mr. T
 '''
+
+# pattern = re.compile(r"(\d{3}).\d{3}.(\d{4})")
+pattern = re.compile(r"Mr\.?")
+
+matches = pattern.finditer(text_to_search)
+
+for match in matches:
+    print(match)

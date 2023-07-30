@@ -1,9 +1,9 @@
 import time
 def Timer(func):
     def wrapper(*args):
-        start = time.perf_counter()
+        start = time.perf_counter_ns()
         x = func(*args)
-        end = time.perf_counter()
+        end = time.perf_counter_ns()
         print(f"{func.__name__} took {end-start} ns :: Args={args}")
     return wrapper
 
