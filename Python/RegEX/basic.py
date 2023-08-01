@@ -26,9 +26,13 @@ Mr. T
 '''
 
 # pattern = re.compile(r"(\d{3}).\d{3}.(\d{4})")
-pattern = re.compile(r"Mr\.?")
+# pattern = re.compile(r"Mr\.?")
+pattern = re.compile(r"(\d{3})-(\d{3})-(\d{4})")
 
 matches = pattern.finditer(text_to_search)
 
 for match in matches:
-    print(match)
+    print(f"Match: {match.group(0)}")
+    print(f"First 3 digits: {match.group(1)}")
+    print(f"Next 3 digits: {match.group(2)}")
+    print(f"Last 4 digits: {match.group(3)}\n")
