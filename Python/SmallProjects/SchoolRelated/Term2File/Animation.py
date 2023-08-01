@@ -6,11 +6,9 @@ for letter in string:
     print(letter, end= "")
     sleep(0.05)
 
-for i in range():
+for i in range(5, 0, -1):
     print(i, end=" ")
     sleep(1)
 print()
 
-for i in string2:
-    print(i)
-    sleep(0.05)
+print(string2)
