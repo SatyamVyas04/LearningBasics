@@ -2,21 +2,25 @@ import time
 def Timer(func):
     def wrapper(*args):
         start = time.perf_counter_ns()
-        x = func(*args)
+        # x = list(func(*args))
         end = time.perf_counter_ns()
         print(f"{func.__name__} took {end-start} ns :: Args={args}")
+        # print(f"{x}\n")
     return wrapper
 
-@Timer
-def add(a):
-    sum=0
-    for i in range(1, a+1):
-        sum+=i
-    return sum
+def square(n):
+    return n*n
 
 @Timer
-def add2(a):
-    return int(a*(a+1)/2)
+def squaringlist(l):
+    return map(square, l)
 
-add(10000000)
-add2(10000000)
+@Timer
+def squaringlist2(l):
+    return [i**2 for i in l]
+
+squaringlist(range(100000))
+squaringlist2(range(100000))
+
+# Shows mapping is faster than using a comprehension
+# as mapping creates an iterator, not iterable.
