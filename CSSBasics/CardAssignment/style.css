@@ -16,7 +16,8 @@ html {
   margin: 5em auto;
   background-color: #9a8c98;
   border: 0.2em solid black;
-  border-radius: 1.5em;
+  border-radius: 1.65em;
+  color: #edf2f4;
 }
 
 .card header
