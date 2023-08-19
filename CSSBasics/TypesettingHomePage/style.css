@@ -96,8 +96,13 @@
 
   .DesignerNav li:hover a{
     color: white;
+    font-style:oblique;
   }
   
   .DesignerNav a:link, .DesignerNav a:visited, .DesignerNav a:hover, .DesignerNav a:active{
     text-decoration: none;
+  }
+
+  .DesignerNav li a {
+    display: block;
   }
