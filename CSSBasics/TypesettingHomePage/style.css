@@ -82,10 +82,15 @@
     background-size: 16px 16px;
     padding-right: 18px;
   }
+
+  .DesignerNav li a {
+    display: block;
+    padding: 15px;
+  }
+
   .DesignerNav li{
     list-style: none;
     border: 2px solid #a66;
-    padding: 15px;
     margin: 20px 0 20px 0;
     text-align: center;
   }
@@ -101,8 +106,4 @@
   
   .DesignerNav a:link, .DesignerNav a:visited, .DesignerNav a:hover, .DesignerNav a:active{
     text-decoration: none;
-  }
-
-  .DesignerNav li a {
-    display: block;
   }
