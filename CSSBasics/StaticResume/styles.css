@@ -1,2 +1,25 @@
-@import url('https://fonts.googleapis.com/css2?family=Amatic+SC&family=DM+Serif+Display&family=Lora&family=PT+Serif&display=swap');
+@import url("https://fonts.googleapis.com/css2?family=Amatic+SC&family=DM+Serif+Display&family=Lora&family=PT+Serif&display=swap");
+
+body {
+	margin: 1rem;
+	border: 1px solid black;
+	font-family: "PT Serif", sans-serif;
+	display: grid;
+}
+
+header {
+    padding: 1rem;
+}
+
+header h1{
+    padding: 0;
+    margin: 0;
+    border-bottom: 0.1rem solid #146C94;
+}
+
+header h3{
+    padding: 0;
+    margin: 0;
+    color: #146C94;
+}
 
