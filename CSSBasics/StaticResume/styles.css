@@ -54,7 +54,6 @@ header h3 {
 }
 
 .socials li {
-	border: 0.1rem solid #333;
 	box-shadow: 0.1rem 0.1rem 0.5rem #333;
 	box-sizing: border-box;
 	display: flex;
@@ -76,32 +75,100 @@ header h3 {
 	scale: 1.5;
 }
 
-.socials li:nth-child(1) a {
-	background-color: #146c94;
-}
-
+/* MAKING HEADER RESPONSIVE */
 @media screen and (max-width: 23rem) {
-	/* FOR Patla Screen, where wrap makes it ugly */
 	.socials {
 		display: grid;
 		gap: 0.5rem;
 		justify-items: center;
 		grid-template-columns: 1fr 1fr 1fr;
 	}
+	.socials li {
+		height: 4rem;
+		width: 4rem;
+	}
 }
-
-@media screen and (min-width: 40rem) {
-	header h1 {
-		font-size: 2.5em;
-	}
-	header h3 {
-		font-size: 1.5em;
-	}
-	header .basicinfo {
-		font-size: 1.3em;
-	}
+@media screen and (min-width: 38rem) {
 	.socials li {
 		width: 4rem;
 		height: 4rem;
 	}
+}
+@media screen and (min-width: 50rem) {
+	header h1 {
+		grid-area: title;
+		font-size: 2.5em;
+	}
+	header h3 {
+		grid-area: intro;
+		font-size: 1.5em;
+	}
+	header .basicinfo {
+		grid-area: basics;
+		font-size: 1.3em;
+	}
+	header .socials {
+		flex-wrap: wrap;
+		height: 150px;
+		gap: 1rem;
+		justify-content: center;
+		grid-area: socials;
+	}
+	.socials li {
+		width: 5rem;
+		height: 5rem;
+	}
+	header {
+		display: grid;
+		grid-template-columns: 1fr 300px;
+		grid-template-areas:
+			"title socials"
+			"intro socials"
+			"basics socials";
+	}
+}
+@media screen and (min-width: 63rem) {
+	body {
+		width: 63rem;
+		margin: 1rem auto;
+	}
+}
+
+/* Socials transitions */
+.socials li a {
+	background-size: 100% 200%;
+	background-position: 0% 5%;
+	transition: 0.5s;
+}
+.socials li:nth-child(1) a {
+	background-image: linear-gradient(white 50%, #333 50%);
+	color: #333;
+}
+
+.socials li:nth-child(2) a {
+	background-image: linear-gradient(white 50%, #0077b5 50%);
+	color: #0077b5;
+}
+
+.socials li:nth-child(3) a {
+	background-image: linear-gradient(white 50%, #e1306c 50%);
+	color: #e1306c;
+}
+
+.socials li:nth-child(4) a {
+	background-image: linear-gradient(white 50%, #068932 50%);
+	color: #068932;
+}
+
+.socials li:nth-child(5) a {
+	background-image: linear-gradient(white 50%, #ffa116 50%);
+}
+
+.socials li:nth-child(6) a {
+	background-image: linear-gradient(white 50%, #ebe2ce 50%);
+}
+
+.socials li a:is(:hover, :active) {
+	background-position: 0% 100%;
+	color: white;
 }
