@@ -105,16 +105,24 @@ header h3 {
 	}
 	header .basicinfo {
 		grid-area: basics;
+		font-size: 1.1em;
 	}
 	header .socials {
 		flex-wrap: wrap;
 		gap: 1.5rem;
+		height: 12rem;
 		justify-content: center;
 		grid-area: socials;
 	}
 	.socials li {
 		width: 5rem;
 		height: 5rem;
+	}
+	.socials li i {
+		font-size: 1.5em;
+	}
+	.socials li img{
+		scale: 1.5;
 	}
 	header {
 		display: grid;
@@ -154,12 +162,12 @@ header h3 {
 }
 
 .socials li:nth-child(4) a {
-	background-image: linear-gradient(white 50%, #ffa116 50%);
+	background-image: linear-gradient(white 50%, #068932 50%);
+	color: #068932;
 }
 
 .socials li:nth-child(5) a {
-	background-image: linear-gradient(white 50%, #068932 50%);
-	color: #068932;
+	background-image: linear-gradient(white 50%, #ffa116 50%);
 }
 
 .socials li:nth-child(6) a {
