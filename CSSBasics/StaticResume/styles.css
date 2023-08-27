@@ -2,24 +2,106 @@
 
 body {
 	margin: 1rem;
-	border: 1px solid black;
+	border: 1px solid black; /* For Reference */
 	font-family: "PT Serif", sans-serif;
-	display: grid;
 }
 
 header {
-    padding: 1rem;
+	padding: 1rem;
 }
 
-header h1{
-    padding: 0;
-    margin: 0;
-    border-bottom: 0.1rem solid #146C94;
+header h1 {
+	padding: 0;
+	margin: 0 0 0 0.2rem;
+	border-bottom: 0.1rem solid #146c94;
 }
 
-header h3{
-    padding: 0;
-    margin: 0;
-    color: #146C94;
+header h3 {
+	padding: 0;
+	margin: 0.2rem;
+	color: #0070bb;
 }
 
+.basicinfo {
+	margin: 0.2rem 0 0 0;
+	padding: 0;
+	color: #9966cc;
+	list-style-type: none;
+}
+
+.basicinfo li i {
+	box-sizing: border-box;
+	color: #4b3621;
+	width: 1.1rem;
+	padding: 0.1rem;
+	margin: 0 0.5rem 0 0.2rem;
+	display: inline-flex;
+	justify-content: center;
+}
+
+.basicinfo a:is(:link, :visited, :hover, :active) {
+	text-decoration: none;
+	color: unset;
+}
+
+.socials {
+	list-style-type: none;
+	margin: 0.5 0 0 0;
+	padding: 0;
+	display: flex;
+	justify-content: space-between;
+	align-items: center;
+}
+
+.socials li {
+	border: 0.1rem solid #333;
+	box-shadow: 0.1rem 0.1rem 0.5rem #333;
+	box-sizing: border-box;
+	display: flex;
+	width: 3rem;
+	height: 3rem;
+}
+
+.socials li a {
+	text-decoration: none;
+	color: black;
+	width: 100%;
+	display: flex;
+	text-align: center;
+	align-items: center;
+	justify-content: center;
+}
+
+.socials li a i {
+	scale: 1.5;
+}
+
+.socials li:nth-child(1) a {
+	background-color: #146c94;
+}
+
+@media screen and (max-width: 23rem) {
+	/* FOR Patla Screen, where wrap makes it ugly */
+	.socials {
+		display: grid;
+		gap: 0.5rem;
+		justify-items: center;
+		grid-template-columns: 1fr 1fr 1fr;
+	}
+}
+
+@media screen and (min-width: 40rem) {
+	header h1 {
+		font-size: 2.5em;
+	}
+	header h3 {
+		font-size: 1.5em;
+	}
+	header .basicinfo {
+		font-size: 1.3em;
+	}
+	.socials li {
+		width: 4rem;
+		height: 4rem;
+	}
+}
