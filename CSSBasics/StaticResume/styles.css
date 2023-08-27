@@ -13,7 +13,7 @@ header {
 header h1 {
 	padding: 0;
 	margin: 0 0 0 0.2rem;
-	border-bottom: 0.1rem solid #146c94;
+	border-bottom: 0.1rem solid #0070bb;
 }
 
 header h3 {
@@ -25,13 +25,13 @@ header h3 {
 .basicinfo {
 	margin: 0.2rem 0 0 0;
 	padding: 0;
-	color: #9966cc;
+	color: #6699CC;
 	list-style-type: none;
 }
 
 .basicinfo li i {
 	box-sizing: border-box;
-	color: #4b3621;
+	color: #36454F;
 	width: 1.1rem;
 	padding: 0.1rem;
 	margin: 0 0.5rem 0 0.2rem;
@@ -105,7 +105,7 @@ header h3 {
 	}
 	header .basicinfo {
 		grid-area: basics;
-		font-size: 1.1em;
+		font-size: 1.2em;
 	}
 	header .socials {
 		flex-wrap: wrap;
