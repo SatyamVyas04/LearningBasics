@@ -105,12 +105,10 @@ header h3 {
 	}
 	header .basicinfo {
 		grid-area: basics;
-		font-size: 1.3em;
 	}
 	header .socials {
 		flex-wrap: wrap;
-		height: 150px;
-		gap: 1rem;
+		gap: 1.5rem;
 		justify-content: center;
 		grid-area: socials;
 	}
@@ -129,7 +127,7 @@ header h3 {
 }
 @media screen and (min-width: 63rem) {
 	body {
-		width: 63rem;
+		width: 60.9rem;
 		margin: 1rem auto;
 	}
 }
@@ -138,7 +136,7 @@ header h3 {
 .socials li a {
 	background-size: 100% 200%;
 	background-position: 0% 5%;
-	transition: 0.5s;
+	transition: 0.2s ease-in;
 }
 .socials li:nth-child(1) a {
 	background-image: linear-gradient(white 50%, #333 50%);
@@ -156,12 +154,12 @@ header h3 {
 }
 
 .socials li:nth-child(4) a {
-	background-image: linear-gradient(white 50%, #068932 50%);
-	color: #068932;
+	background-image: linear-gradient(white 50%, #ffa116 50%);
 }
 
 .socials li:nth-child(5) a {
-	background-image: linear-gradient(white 50%, #ffa116 50%);
+	background-image: linear-gradient(white 50%, #068932 50%);
+	color: #068932;
 }
 
 .socials li:nth-child(6) a {
