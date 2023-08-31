@@ -1,4 +1,4 @@
-@import url("https://fonts.googleapis.com/css2?family=Amatic+SC&family=DM+Serif+Display&family=Fredoka&family=PT+Serif&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Amatic+SC&family=DM+Serif+Display&family=Fredoka&family=Graduate&display=swap");
 
 body {
 	margin: 1rem;
@@ -8,11 +8,11 @@ body {
 }
 
 header {
-	padding: 2rem 2rem 2rem 2rem;
+	padding: 2rem;
 }
 
 header h1 {
-	font-family: "PT Serif", Verdana, Geneva, Tahoma, sans-serif;
+	font-family: "Graduate", Geneva, Tahoma, sans-serif;
 	padding: 0;
 	margin: 0 0 0 0.2rem;
 	font-weight: bolder;
@@ -20,6 +20,7 @@ header h1 {
 }
 
 header h3 {
+	font-family: "Graduate", Geneva, Tahoma, sans-serif;
 	padding: 0;
 	margin: 0.2rem;
 	color: #0070bb;
