@@ -8,7 +8,6 @@
  */
 
 #include <string.h>
-
 #include "helper_functions.c"
 #include "stack.c"
 
@@ -44,7 +43,7 @@ char *infixToPrefix(char *infix)
 		if (is_operator(revInfix[i]))
 		{
 			// It will pop from stack till a higher precendence operator is found
-			while (!isEmpty(stack) && is_higher_or_equal(revInfix[i], stack->array[stack->top]))
+			while (!isEmpty(stack) && is_higher_or_equal(stack->array[stack->top], revInfix[i]))
 			{
 				ans[j++] = stack->array[stack->top];
 				stack->top--;
@@ -79,9 +78,9 @@ char *infixToPrefix(char *infix)
 		ans[j++] = stack->array[stack->top];
 		stack->top--;
 	}
-	
+
 	ans[j] = '\0';
-	
+
 	// Freeing allocated space
 	free(revInfix);
 	free(stack->array);

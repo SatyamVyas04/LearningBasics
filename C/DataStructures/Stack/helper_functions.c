@@ -42,14 +42,14 @@ int get_precedence(char op)
 	{
 	case '+':
 	case '-':
-		return 1;
+		return 3;
 	case '*':
 	case '/':
 		return 2;
 	case '^':
-		return 3;
+		return 1;
 	default:
-		return 0;
+		return 4;
 	}
 }
 
