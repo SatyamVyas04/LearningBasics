@@ -22,41 +22,42 @@
 char *infixToPrefix(char *infix)
 {
 	int length = strlen(infix);
-	char *prefix = (char *)malloc((length + 1) * sizeof(char)); // +1 for the null terminator
+	char *prefix = (char *)malloc((length + 1) * sizeof(char)); // extra for null
 	int i, j = 0;
 
-	// Reverse the infix expression
-	char *reversedInfix = (char *)malloc((length + 1) * sizeof(char));
+	// Reversal
+	char *revInfix = (char *)malloc((length + 1) * sizeof(char));
 	for (i = length - 1; i >= 0; i--)
 	{
 		if (infix[i] == '(')
-			reversedInfix[j++] = ')';
+			revInfix[j++] = ')';
 		else if (infix[i] == ')')
-			reversedInfix[j++] = '(';
+			revInfix[j++] = '(';
 		else
-			reversedInfix[j++] = infix[i];
+			revInfix[j++] = infix[i];
 	}
-	reversedInfix[j] = '\0';
+	revInfix[j] = '\0';
 
 	struct Stack *stack = initialize_stack(length);
 	for (i = 0, j = 0; i < length; i++)
 	{
-		if (is_operator(reversedInfix[i]))
+		if (is_operator(revInfix[i]))
 		{
-			while (!isEmpty(stack) && is_higher_or_equal(reversedInfix[i], stack->array[stack->top]))
+			// It will pop from stack till a higher precendence operator is found
+			while (!isEmpty(stack) && is_higher_or_equal(revInfix[i], stack->array[stack->top]))
 			{
 				prefix[j++] = stack->array[stack->top];
 				stack->top--;
 			}
 			stack->top++;
-			stack->array[stack->top] = reversedInfix[i];
+			stack->array[stack->top] = revInfix[i];
 		}
-		else if (reversedInfix[i] == '(')
+		else if (revInfix[i] == '(')
 		{
 			stack->top++;
-			stack->array[stack->top] = reversedInfix[i];
+			stack->array[stack->top] = revInfix[i];
 		}
-		else if (reversedInfix[i] == ')')
+		else if (revInfix[i] == ')')
 		{
 			while (!isEmpty(stack) && stack->array[stack->top] != '(')
 			{
@@ -68,23 +69,25 @@ char *infixToPrefix(char *infix)
 		}
 		else
 		{
-			prefix[j++] = reversedInfix[i];
+			prefix[j++] = revInfix[i];
 		}
 	}
 
-	// Pop any remaining operators from the stack
+	// Pop other remaining operators
 	while (!isEmpty(stack))
 	{
 		prefix[j++] = stack->array[stack->top];
 		stack->top--;
 	}
-
+	
 	prefix[j] = '\0';
-	free(reversedInfix);
+	
+	// Freeing allocated space
+	free(revInfix);
 	free(stack->array);
 	free(stack);
 
-	// Reverse the prefix expression to get the final result
+	// Reverse again
 	length = strlen(prefix);
 	for (i = 0, j = length - 1; i < j; i++, j--)
 	{
