@@ -22,7 +22,7 @@
 char *infixToPrefix(char *infix)
 {
 	int length = strlen(infix);
-	char *prefix = (char *)malloc((length + 1) * sizeof(char)); // extra for null
+	char *ans = (char *)malloc((length + 1) * sizeof(char)); // extra for null
 	int i, j = 0;
 
 	// Reversal
@@ -46,7 +46,7 @@ char *infixToPrefix(char *infix)
 			// It will pop from stack till a higher precendence operator is found
 			while (!isEmpty(stack) && is_higher_or_equal(revInfix[i], stack->array[stack->top]))
 			{
-				prefix[j++] = stack->array[stack->top];
+				ans[j++] = stack->array[stack->top];
 				stack->top--;
 			}
 			stack->top++;
@@ -61,7 +61,7 @@ char *infixToPrefix(char *infix)
 		{
 			while (!isEmpty(stack) && stack->array[stack->top] != '(')
 			{
-				prefix[j++] = stack->array[stack->top];
+				ans[j++] = stack->array[stack->top];
 				stack->top--;
 			}
 			if (!isEmpty(stack) && stack->array[stack->top] == '(')
@@ -69,18 +69,18 @@ char *infixToPrefix(char *infix)
 		}
 		else
 		{
-			prefix[j++] = revInfix[i];
+			ans[j++] = revInfix[i];
 		}
 	}
 
 	// Pop other remaining operators
 	while (!isEmpty(stack))
 	{
-		prefix[j++] = stack->array[stack->top];
+		ans[j++] = stack->array[stack->top];
 		stack->top--;
 	}
 	
-	prefix[j] = '\0';
+	ans[j] = '\0';
 	
 	// Freeing allocated space
 	free(revInfix);
@@ -88,14 +88,14 @@ char *infixToPrefix(char *infix)
 	free(stack);
 
 	// Reverse again
-	length = strlen(prefix);
+	length = strlen(ans);
 	for (i = 0, j = length - 1; i < j; i++, j--)
 	{
-		char temp = prefix[i];
-		prefix[i] = prefix[j];
-		prefix[j] = temp;
+		char temp = ans[i];
+		ans[i] = ans[j];
+		ans[j] = temp;
 	}
-	return prefix;
+	return ans;
 }
 
 int main()
