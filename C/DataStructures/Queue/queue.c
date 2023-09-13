@@ -95,26 +95,26 @@ char front(struct Queue *queue) { return queue->array[queue->front]; }
 // 7 -> rear
 char rear(struct Queue *queue) { return queue->array[queue->rear]; }
 
-void main()
-{
-	struct Queue *q = initialize_queue(8);
-	printf("> IsEmpty: %d\n", isEmpty(q)); // 1 for Empty Queue Array
-	dequeue(q);							   // Checking for Dequeue in Empty Queue
-	enqueue(q, 'a');					   // Enqueue-d 8 characters
-	enqueue(q, 'b');
-	enqueue(q, 'c');
-	enqueue(q, 'd');
-	enqueue(q, 'e');
-	enqueue(q, 'f');
-	enqueue(q, 'g');
-	enqueue(q, 'h');
-	display(q);						   // Checking Queue
-	printf("> Front: %c\n", front(q)); // Checking Front and Rear
-	printf("> Rear: %c\n", rear(q));
-	printf("> isFull: %d\n", isFull(q));
-	printf("> Enqueing i to test limitations");
-	enqueue(q, 'i');							 // Enqueueing when Full
-	display(q);									 // Checking Queue
-	printf("> Dequeued Item: %c\n", dequeue(q)); // Checking Dequeue
-	display(q);									 // Final Display
-}
+// void main()
+// {
+// 	struct Queue *q = initialize_queue(8);
+// 	printf("> IsEmpty: %d\n", isEmpty(q)); // 1 for Empty Queue Array
+// 	dequeue(q);							   // Checking for Dequeue in Empty Queue
+// 	enqueue(q, 'a');					   // Enqueue-d 8 characters
+// 	enqueue(q, 'b');
+// 	enqueue(q, 'c');
+// 	enqueue(q, 'd');
+// 	enqueue(q, 'e');
+// 	enqueue(q, 'f');
+// 	enqueue(q, 'g');
+// 	enqueue(q, 'h');
+// 	display(q);						   // Checking Queue
+// 	printf("> Front: %c\n", front(q)); // Checking Front and Rear
+// 	printf("> Rear: %c\n", rear(q));
+// 	printf("> isFull: %d\n", isFull(q));
+// 	printf("> Enqueing i to test limitations");
+// 	enqueue(q, 'i');							 // Enqueueing when Full
+// 	display(q);									 // Checking Queue
+// 	printf("> Dequeued Item: %c\n", dequeue(q)); // Checking Dequeue
+// 	display(q);									 // Final Display
+// }
