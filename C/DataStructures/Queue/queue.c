@@ -77,7 +77,7 @@ char dequeue(struct Queue *queue)
 {
 	if (isEmpty(queue))
 	{
-		printf("\n> Queue already Empty! ");
+		printf("\n> Queue already Empty! \n");
 		return '\0';
 	}
 	char front = queue->array[queue->front];
