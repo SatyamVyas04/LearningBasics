@@ -21,79 +21,117 @@
 
 struct Queue
 {
-	int front;
-	int rear;
-	unsigned size;
-	char *array;
+    int front;
+    int rear;
+    unsigned size;
+    char *array;
 };
 
 // 0 -> Initialize
 struct Queue *initialize_queue(unsigned size)
 {
-	struct Queue *queue = (struct Queue *)malloc(sizeof(struct Queue));
-	queue->front = 0;
-	queue->rear = -1;
-	queue->size = size;
-	queue->array = (char *)malloc((size) * sizeof(char));
-	return queue;
+    struct Queue *queue = (struct Queue *)malloc(sizeof(struct Queue));
+    queue->front = -1;
+    queue->rear = -1;
+    queue->size = size;
+    queue->array = (char *)malloc(size * sizeof(char));
+    return queue;
 }
 
 // 1 -> display
 void display(struct Queue *queue)
 {
-	printf("\n> Queue Front\n");
-	for (int i = 0; i <= queue->rear; i++)
-	{
-		printf("> %c\n", queue->array[i]);
-	}
-	printf("> Queue Rear\n\n");
+    if (isEmpty(queue))
+    {
+        printf("\n> Queue is Empty\n");
+        return;
+    }
+    
+    printf("\n> Queue Front\n");
+    
+    int i = queue->front;
+    do
+    {
+        printf("> %c\n", queue->array[i]);
+        i = (i + 1) % queue->size;
+    } while (i != (queue->rear + 1) % queue->size);
+    
+    printf("> Queue Rear\n\n");
 }
 
 // 2 -> isEmpty
-int isEmpty(struct Queue *queue) { return queue->rear == -1; }
+int isEmpty(struct Queue *queue)
+{
+    return queue->front == -1;
+}
 
 // 3 -> isFull
-int isFull(struct Queue *queue) { return queue->rear == queue->size - 1; }
+int isFull(struct Queue *queue)
+{
+    return (queue->rear + 1) % queue->size == queue->front;
+}
 
 // 4 -> enqueue
 void enqueue(struct Queue *queue, char item)
 {
-	if (isFull(queue))
-	{
-		printf("\n> Dequeue-ing to free space: %c\n", queue->array[queue->front]);
-		for (int i = 1; i <= queue->rear; i++)
-		{
-			queue->array[i - 1] = queue->array[i];
-		}
-		queue->rear--;
-	}
-	queue->rear++;
-	queue->array[queue->rear] = item;
-	queue->array[queue->rear + 1] = '\0';
+    if (isFull(queue))
+    {
+        printf("\n> Dequeue-ing to free space: %c\n", queue->array[queue->front]);
+        queue->front = (queue->front + 1) % queue->size;
+    }
+    
+    if (isEmpty(queue))
+    {
+        queue->front = 0;
+    }
+    
+    queue->rear = (queue->rear + 1) % queue->size;
+    queue->array[queue->rear] = item;
 }
 
 // 5 -> dequeue
 char dequeue(struct Queue *queue)
 {
-	if (isEmpty(queue))
-	{
-		printf("\n> Queue already Empty! \n");
-		return '\0';
-	}
-	char front = queue->array[queue->front];
-	for (int i = 1; i < queue->size; i++)
-	{
-		queue->array[i - 1] = queue->array[i];
-	}
-	queue->rear--;
-	return front;
+    if (isEmpty(queue))
+    {
+        printf("\n> Queue already Empty! \n");
+        return '\0';
+    }
+    
+    char front = queue->array[queue->front];
+    
+    if (queue->front == queue->rear)
+    {
+        queue->front = -1;
+        queue->rear = -1;
+    }
+    else
+    {
+        queue->front = (queue->front + 1) % queue->size;
+    }
+    
+    return front;
 }
 
 // 6 -> front
-char front(struct Queue *queue) { return queue->array[queue->front]; }
+char front(struct Queue *queue)
+{
+    if (isEmpty(queue))
+    {
+        return '\0';
+    }
+    return queue->array[queue->front];
+}
 
 // 7 -> rear
-char rear(struct Queue *queue) { return queue->array[queue->rear]; }
+char rear(struct Queue *queue)
+{
+    if (isEmpty(queue))
+    {
+        return '\0';
+    }
+    return queue->array[queue->rear];
+}
 
 // void main()
 // {

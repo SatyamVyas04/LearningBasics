@@ -92,15 +92,11 @@ void display_all(struct NQueues *nqueues)
 int main()
 {
     struct NQueues *nqueues = createNQueues(3, 5);
-    add_episode(nqueues, 97, 0);  
-    add_episode(nqueues, 98, 0);  
-    add_episode(nqueues, 99, 0);  
-    add_episode(nqueues, 100, 1); 
-    add_episode(nqueues, 101, 1); 
-    add_episode(nqueues, 102, 1); 
-    add_episode(nqueues, 103, 2); 
-    add_episode(nqueues, 104, 2); 
-    add_episode(nqueues, 105, 2); 
+add_episode(nqueues, 97, 0);  // Add episode 101 to queue 0
+add_episode(nqueues, 98, 1);  // Add episode 102 to queue 1
+add_episode(nqueues, 99, 2);  // Add episode 103 to queue 2
+add_episode(nqueues, 100, 0); // Add episode 104 to queue 0
+add_episode(nqueues, 101, 1); 
 
     display_all(nqueues);
 
@@ -112,7 +108,6 @@ int main()
     display_queue(nqueues, 0);
 
     next_episode = watch_next_episode(nqueues, 0);
-    next_episode = watch_next_episode(nqueues, 0); 
     // Queue 0 should be empty now
 
     // Underflow check
