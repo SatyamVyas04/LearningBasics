@@ -64,8 +64,9 @@ void delete_at_pos(Node **head, int pos)
 	if (pos == 0)
 	{
 		*head = (*head)->next;
+		return;
 	}
-	else if (pos == -1 || pos == size)
+	else if (pos == -1 || pos == size - 1)
 	{
 		Node *templl = *head;
 		while (templl->next->next != NULL)
@@ -73,21 +74,23 @@ void delete_at_pos(Node **head, int pos)
 			templl = templl->next;
 		}
 		templl->next = NULL;
+		return;
 	}
-	else if (pos > 0 && pos <= size - 1)
+	else if (pos > 0 && pos < size - 1)
 	{
 		Node *templl = *head;
-		while (pos != 1)
+		while (--pos)
 		{
 			templl = templl->next;
-			pos--;
 		}
 		Node *after_toberemoved = templl->next->next;
 		templl->next = after_toberemoved;
+		return;
 	}
 	else
 	{
 		printf("\n> Invalid POS!\n");
+		return;
 	}
 }
 
@@ -131,15 +134,69 @@ void delete_by_value(Node **head, int value)
 	}
 }
 
-// gets the node at position 'pos' in linkedlist originating from 'head'
-// return 'null' if no node found along with informative message
-Node *get_node_at_pos(Node **head, int pos) {}
+// Get Node at a certain Position
+Node *get_node_at_pos(Node **head, int pos)
+{
+	Node *templl = *head;
+	if (pos == 0)
+	{
+		return templl;
+	}
+	else if (pos == -1 || pos == size - 1)
+	{
+		while (templl->next != NULL)
+		{
+			templl = templl->next;
+		}
+		return templl;
+	}
+	else if (pos > 0 && pos < size - 1)
+	{
+		while (pos--)
+		{
+			templl = templl->next;
+		}
+		return templl;
+	}
+	else
+	{
+		printf("\n> Invalid POS!\n");
+		return NULL;
+	}
+}
 
-// Return the node with the first occurrence of value
-// return 'null' if no node found along with informative message
-Node *find_first(Node **head, int value) {}
+// Return First Occurence of a Node
+Node *find_first(Node **head, int value)
+{
+	Node *templl = *head;
+	// Tail Check
+	if (templl->data == value)
+	{
+		return templl;
+	}
 
-// display entire linked list, starting from head, in a well-formatted way
+	// Check Mid
+	while (templl->next != NULL)
+	{
+		if (templl->data == value)
+		{
+			return templl;
+		}
+		else
+		{
+			templl = templl->next;
+		}
+	}
+
+	// Head Check
+	if (templl->data == value)
+	{
+		return templl;
+	}
+	return NULL;
+}
+
+// Display Linked List
 void display(Node *head)
 {
 	printf("\nLinked List: tail ->");
@@ -151,11 +208,33 @@ void display(Node *head)
 	printf(" [%d] -> head\n", head->data);
 }
 
-// deallocate the memory being used by the entire linkedlist, starting from head
-void free_linkedlist(Node *head) {}
+// Deallocate Linked List Memory
+void free_linkedlist(Node *head)
+{
+	Node *tmp;
+	while (head != NULL)
+	{
+		tmp = head;
+		head = head->next;
+		free(tmp);
+	}
+}
 
-// reverse a linkedlist - reverse a given linked list
-Node *reverse(Node *head) {}
+// Reverse a Linked List
+Node *reverse(Node *head)
+{
+	Node *prevNode = NULL;
+	Node *current = head;
+	Node *nextNode = NULL;
+	while (current)
+	{
+		nextNode = current->next;
+		current->next = prevNode;
+		prevNode = current;
+		current = nextNode;
+	}
+	return prevNode;
+}
 
 void main()
 {
@@ -164,29 +243,59 @@ void main()
 	insert_at_pos(&ll, -1, 3); // Insert at -1
 	insert_at_pos(&ll, 3, 4);  // Insert at a random POS
 	insert_at_pos(&ll, -1, 5); // Insert at -1
-	/*
-		insert_at_pos(&ll, 6, 10); // Test Invalid
-		display(ll);
+	// insert_at_pos(&ll, -2, 10); // Error Check
 
-		delete_at_pos(&ll, 1);	   // Should delete POS 1 i.e 2;
-		display(ll);			   // Seeing the changes in LL
-		insert_at_pos(&ll, 1, 2);  // Putting back 2 to test again
-		display(ll);			   // Final Display
-		delete_at_pos(&ll, 0);	   // Should delete POS 0 i.e 1;
-		display(ll);			   // Seeing the changes in LL
-		insert_at_pos(&ll, 0, 1);  // Putting back 2 to test again
-		display(ll);			   // Final Display
-		delete_at_pos(&ll, -1);	   // Should delete POS -1 i.e 5;
-		display(ll);			   // Seeing the changes in LL
-		insert_at_pos(&ll, -1, 5); // Putting back 2 to test again
-		display(ll);			   // Final Display
-		delete_at_pos(&ll, 6);	   // Error Check;
+	/*
+		delete_at_pos(&ll, 1);	  // Should delete POS 1 i.e 2;
+		display(ll);			  // Seeing the changes in LL
+		insert_at_pos(&ll, 1, 2); // Putting back 2 to test again
+
+		delete_at_pos(&ll, 0);	  // Should delete POS 0 i.e 1;
+		display(ll);			  // Seeing the changes in LL
+		insert_at_pos(&ll, 0, 1); // Putting back 2 to test again
+
+		delete_at_pos(&ll, 4);	  // Should delete POS 4 i.e 5;
+		display(ll);			  // Seeing the changes in LL
+		insert_at_pos(&ll, 4, 5); // Putting back 2 to test again
 
 		delete_by_value(&ll, 1); // Value at Tail
 		delete_by_value(&ll, 2); // Value in Between
 		delete_by_value(&ll, 5); // Value at Head
 		delete_by_value(&ll, 6); // Invalid Test
-	*/
 
+		Node *node = get_node_at_pos(&ll, 0);
+		node = get_node_at_pos(&ll, 1);
+		node = get_node_at_pos(&ll, 2);
+		node = get_node_at_pos(&ll, 3);
+		node = get_node_at_pos(&ll, 4);
+		node = get_node_at_pos(&ll, 5);
+		node = get_node_at_pos(&ll, -1);
+		if (node != NULL)
+		{
+			printf("\n> Node: %d", node->data);
+		}
+		else
+		{
+			printf("\n> Invalid POS");
+		}
+
+		Node *node = find_first(&ll, 1);
+		node = find_first(&ll, 2);
+		node = find_first(&ll, 3);
+		node = find_first(&ll, 4);
+		node = find_first(&ll, 5);
+		node = find_first(&ll, -1);
+		if (node != NULL)
+		{
+			display(node);
+		}
+		else
+		{
+			printf("\n> Invalid POS");
+		}
+
+		display(ll);
+		ll = reverse(ll);
+	*/
 	display(ll);
 }
