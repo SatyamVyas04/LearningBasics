@@ -71,22 +71,20 @@ Node *add_two_numbers(Node *l1, Node *l2)
     }
 
     // Adding the 2 numbers
-    int sum = 0;
-    for (int i = 0; i < SIZE; i++)
-    {
+    double sum = 0; 
+    for (int i = 0; i < SIZE; i++) {
         sum += (num1[i] + num2[i]) * pow(10, i);
     }
-    printf("\n> SUM: %d\n", sum);
+    printf("\n> SUM: %.0lf\n", sum); 
 
     // Start ans node by adding ones digit
-    Node *ans = create_node(sum % 10);
+    Node *ans = create_node((int)(fmod(sum, 10))); 
     sum /= 10;
 
     // Getting all digits from the sum
     int digit = 0;
-    while (sum != 0)
-    {
-        digit = sum % 10;
+    while (sum >= 1) { // Check if sum >= 1
+        digit = (int)(fmod(sum, 10)); 
         sum /= 10;
         // Inserting digits before the ones digit
         insert_at_pos(&ans, 0, digit);
