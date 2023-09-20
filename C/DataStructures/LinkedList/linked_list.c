@@ -236,66 +236,66 @@ Node *reverse(Node *head)
 	return prevNode;
 }
 
-void main()
-{
-	Node *ll = create_node(2);
-	insert_at_pos(&ll, 0, 1);  // Insert at 0
-	insert_at_pos(&ll, -1, 3); // Insert at -1
-	insert_at_pos(&ll, 3, 4);  // Insert at a random POS
-	insert_at_pos(&ll, -1, 5); // Insert at -1
-	// insert_at_pos(&ll, -2, 10); // Error Check
+// void main()
+// {
+// 	Node *ll = create_node(2);
+// 	insert_at_pos(&ll, 0, 1);  // Insert at 0
+// 	insert_at_pos(&ll, -1, 3); // Insert at -1
+// 	insert_at_pos(&ll, 3, 4);  // Insert at a random POS
+// 	insert_at_pos(&ll, -1, 5); // Insert at -1
+// 	// insert_at_pos(&ll, -2, 10); // Error Check
 
-	/*
-		delete_at_pos(&ll, 1);	  // Should delete POS 1 i.e 2;
-		display(ll);			  // Seeing the changes in LL
-		insert_at_pos(&ll, 1, 2); // Putting back 2 to test again
+// 	/*
+// 		delete_at_pos(&ll, 1);	  // Should delete POS 1 i.e 2;
+// 		display(ll);			  // Seeing the changes in LL
+// 		insert_at_pos(&ll, 1, 2); // Putting back 2 to test again
 
-		delete_at_pos(&ll, 0);	  // Should delete POS 0 i.e 1;
-		display(ll);			  // Seeing the changes in LL
-		insert_at_pos(&ll, 0, 1); // Putting back 2 to test again
+// 		delete_at_pos(&ll, 0);	  // Should delete POS 0 i.e 1;
+// 		display(ll);			  // Seeing the changes in LL
+// 		insert_at_pos(&ll, 0, 1); // Putting back 2 to test again
 
-		delete_at_pos(&ll, 4);	  // Should delete POS 4 i.e 5;
-		display(ll);			  // Seeing the changes in LL
-		insert_at_pos(&ll, 4, 5); // Putting back 2 to test again
+// 		delete_at_pos(&ll, 4);	  // Should delete POS 4 i.e 5;
+// 		display(ll);			  // Seeing the changes in LL
+// 		insert_at_pos(&ll, 4, 5); // Putting back 2 to test again
 
-		delete_by_value(&ll, 1); // Value at Tail
-		delete_by_value(&ll, 2); // Value in Between
-		delete_by_value(&ll, 5); // Value at Head
-		delete_by_value(&ll, 6); // Invalid Test
+// 		delete_by_value(&ll, 1); // Value at Tail
+// 		delete_by_value(&ll, 2); // Value in Between
+// 		delete_by_value(&ll, 5); // Value at Head
+// 		delete_by_value(&ll, 6); // Invalid Test
 
-		Node *node = get_node_at_pos(&ll, 0);
-		node = get_node_at_pos(&ll, 1);
-		node = get_node_at_pos(&ll, 2);
-		node = get_node_at_pos(&ll, 3);
-		node = get_node_at_pos(&ll, 4);
-		node = get_node_at_pos(&ll, 5);
-		node = get_node_at_pos(&ll, -1);
-		if (node != NULL)
-		{
-			printf("\n> Node: %d", node->data);
-		}
-		else
-		{
-			printf("\n> Invalid POS");
-		}
+// 		Node *node = get_node_at_pos(&ll, 0);
+// 		node = get_node_at_pos(&ll, 1);
+// 		node = get_node_at_pos(&ll, 2);
+// 		node = get_node_at_pos(&ll, 3);
+// 		node = get_node_at_pos(&ll, 4);
+// 		node = get_node_at_pos(&ll, 5);
+// 		node = get_node_at_pos(&ll, -1);
+// 		if (node != NULL)
+// 		{
+// 			printf("\n> Node: %d", node->data);
+// 		}
+// 		else
+// 		{
+// 			printf("\n> Invalid POS");
+// 		}
 
-		Node *node = find_first(&ll, 1);
-		node = find_first(&ll, 2);
-		node = find_first(&ll, 3);
-		node = find_first(&ll, 4);
-		node = find_first(&ll, 5);
-		node = find_first(&ll, -1);
-		if (node != NULL)
-		{
-			display(node);
-		}
-		else
-		{
-			printf("\n> Invalid POS");
-		}
+// 		Node *node = find_first(&ll, 1);
+// 		node = find_first(&ll, 2);
+// 		node = find_first(&ll, 3);
+// 		node = find_first(&ll, 4);
+// 		node = find_first(&ll, 5);
+// 		node = find_first(&ll, -1);
+// 		if (node != NULL)
+// 		{
+// 			display(node);
+// 		}
+// 		else
+// 		{
+// 			printf("\n> Invalid POS");
+// 		}
 
-		display(ll);
-		ll = reverse(ll);
-	*/
-	display(ll);
-}
+// 		display(ll);
+// 		ll = reverse(ll);
+// 	*/
+// 	display(ll);
+// }

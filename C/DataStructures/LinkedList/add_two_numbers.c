@@ -24,6 +24,8 @@ Node *add_two_numbers(Node *l1, Node *l2)
     int num1[SIZE];
     int num2[SIZE];
     int final[SIZE + 1];
+    l1 = reverse(l1);
+    l2 = reverse(l2);
 
     // Initialise with 0's
     for (int i = 0; i < SIZE; i++)
@@ -36,7 +38,7 @@ Node *add_two_numbers(Node *l1, Node *l2)
 
     // Traverse Nodes to get all Digits
     int index = 0;
-    Node *templl = reverse(l1);
+    Node *templl = l1;
     while (templl != NULL)
     {
         num1[index] = templl->data;
@@ -44,13 +46,17 @@ Node *add_two_numbers(Node *l1, Node *l2)
         index++;
     }
     index = 0;
-    templl = reverse(l2);
+    templl = l2;
     while (templl != NULL)
     {
         num2[index] = templl->data;
         templl = templl->next;
         index++;
     }
+
+    // Reverting back our initial linked list
+    l1 = reverse(l1);
+    l2 = reverse(l2);
 
     // Displaying all digits
     printf("\n> NUM1 (reversed):");
@@ -102,5 +108,7 @@ void main()
     insert_at_pos(&n2, -1, 4);
 
     Node *sum = add_two_numbers(n1, n2);
+    display(n1);
+    display(n2);
     display(sum);
 }
