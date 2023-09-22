@@ -18,6 +18,7 @@ Node *create_node(int data)
 	Node *node = (Node *)malloc(sizeof(Node));
 	node->data = data;
 	node->next = NULL;
+	return node;
 }
 
 // Insert at Position in Linked List
@@ -61,6 +62,11 @@ void insert_at_pos(Node **head, int pos, int data)
 // Delete at Position in Linked List
 void delete_at_pos(Node **head, int pos)
 {
+	if (head == NULL)
+	{
+		printf("\n> Linked List is already empty! \n");
+		return;
+	}
 	if (pos == 0)
 	{
 		*head = (*head)->next;
@@ -97,6 +103,12 @@ void delete_at_pos(Node **head, int pos)
 // Delete by Value/Data of the Node
 void delete_by_value(Node **head, int value)
 {
+	if (head == NULL)
+	{
+		printf("\n> Linked List is already empty! \n");
+		return;
+	}
+
 	Node *templl = *head;
 	Node *prevNode = *head;
 	Node *nextNode = (*head)->next;
@@ -137,6 +149,11 @@ void delete_by_value(Node **head, int value)
 // Get Node at a certain Position
 Node *get_node_at_pos(Node **head, int pos)
 {
+	if (head == NULL)
+	{
+		printf("\n> Linked List is empty! \n");
+		return NULL;
+	}
 	Node *templl = *head;
 	if (pos == 0)
 	{
@@ -168,6 +185,11 @@ Node *get_node_at_pos(Node **head, int pos)
 // Return First Occurence of a Node
 Node *find_first(Node **head, int value)
 {
+	if (head == NULL)
+	{
+		printf("\n> Linked List is empty! \n");
+		return NULL;
+	}
 	Node *templl = *head;
 	// Tail Check
 	if (templl->data == value)
@@ -199,6 +221,11 @@ Node *find_first(Node **head, int value)
 // Display Linked List
 void display(Node *head)
 {
+	if (head == NULL)
+	{
+		printf("\n> Linked List is empty! \n");
+		return;
+	}
 	printf("\nLinked List: tail ->");
 	while (head->next != NULL)
 	{
