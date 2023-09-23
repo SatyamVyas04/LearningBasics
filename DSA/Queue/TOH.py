@@ -1,2 +1,0 @@
-# Towers of Hanoi
-
