@@ -16,12 +16,16 @@ function re() {
 }
 
 function save() {
-    if (entries.innerText === 'None') {
+    if (count === 0){
+        return;
+    }
+    else if (entries.innerText === 'None') {
         entries.innerText = count + " ";
     }
     else {
         enteries.innerText += " - "  + count
     }
+    re()
 }
 
 button.addEventListener("click", increment);
