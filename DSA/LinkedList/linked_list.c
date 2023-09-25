@@ -226,13 +226,13 @@ void display(Node *head)
 		printf("\n> Linked List is empty! \n");
 		return;
 	}
-	printf("\nLinked List: tail ->");
+	printf("\nLinked List: head ->");
 	while (head->next != NULL)
 	{
 		printf(" [%d] ->", head->data);
 		head = head->next;
 	}
-	printf(" [%d] -> head\n", head->data);
+	printf(" [%d] -> tail\n", head->data);
 }
 
 // Deallocate Linked List Memory
