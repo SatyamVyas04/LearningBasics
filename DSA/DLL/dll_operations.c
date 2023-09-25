@@ -32,8 +32,7 @@ Node *create_node(int val) {
 }
 
 // Insert at or after a Position in Linked List
-void insert_at_pos(Node **header, Node **trailer,
-                   int pos, bool is_after, int data) {
+void insert_at_pos(Node **header, Node **trailer, int pos, bool is_after, int data) {
     if (pos == 0) {
         Node *newNode = create_node(data);
         newNode->next = (*header);
