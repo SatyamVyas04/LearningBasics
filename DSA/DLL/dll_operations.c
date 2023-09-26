@@ -155,6 +155,7 @@ void swap(Node **header, Node **trailer, int pos_1, int pos_2) {
         prevtotail->next = head;
         head->prev = prevtotail;
         *header = tail;
+        *trailer = head;
         return;
     }
 
