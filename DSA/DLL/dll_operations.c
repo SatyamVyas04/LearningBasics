@@ -112,12 +112,7 @@ void reverse(Node **header) {
     }
 }
 
-// pos == 0 indicates start of the DLL
-// pos == -1 indicates end of the DLL
-// pos == n indicates intermediate node pos
-
-// this swaps the 2 nodes in the DLL at positions pos_1 and pos_2
-// please note, the nodes have to be swapped and not just values
+// Swap 2 nodes in DLL
 void swap(Node **header, Node **trailer, int pos_1, int pos_2) {
     if (*header == NULL || *trailer == NULL) {
         printf("\n> Linked List is empty! \n");
@@ -147,13 +142,50 @@ void swap(Node **header, Node **trailer, int pos_1, int pos_2) {
 
     Node *node1 = *header;
     Node *node2 = *header;
+    
+    if(pos_1 == 0 && pos_2 == size - 1){
+        Node *tail = *trailer;
+        Node *head = *header;
+        Node *nexttohead = head->next;
+        Node *prevtotail = tail->prev;
+        head->next = NULL;
+        tail->prev = NULL;
+        nexttohead->prev = tail;
+        tail->next = nexttohead;
+        prevtotail->next = head;
+        head->prev = prevtotail;
+        *header = tail;
+        return;
+    }
+
     for (int i = 0; i < pos_1; i++) {
         node1 = node1->next;
     }
     for (int i = 0; i < pos_2; i++) {
         node2 = node2->next;
     }
+    
     if (pos_2 - pos_1 == 1) {
+        if (pos_1 == 0) {
+            Node *next2 = node2->next;
+            node2->prev = NULL;
+            node2->next = node1;
+            node1->prev = node2;
+            node1->next = next2;
+            next2->prev = node1;
+            *header = node2;
+            return;
+        }
+        if (pos_2 == size - 1) {
+            Node *prev1 = node1->prev;
+            prev1->next = node2;
+            node2->prev = prev1;
+            node2->next = node1;
+            node1->prev = node2;
+            node1->next = NULL;
+            *trailer = node1;
+            return;
+        }
         Node *prev1 = node1->prev;
         Node *next2 = node2->next;
         prev1->next = node2;
@@ -165,6 +197,34 @@ void swap(Node **header, Node **trailer, int pos_1, int pos_2) {
         if (prev1 == NULL)
             *header = node2;
     } else {
+        if (pos_1 == 0) {
+            Node *next1 = node1->next;
+            Node *prev2 = node2->prev;
+            Node *next2 = node2->next;
+            node2->prev = NULL;
+            node2->next = next1;
+            next1->prev = node2;
+            prev2->next = node1;
+            node1->prev = prev2;
+            next2->prev = node1;
+            node1->next = next2;
+            *header = node2;
+            return;
+        }
+        if (pos_2 == size - 1) {
+            Node *prev1 = node1->prev;
+            Node *next1 = node1->next;
+            Node *prev2 = node2->prev;
+            prev1->next = node2;
+            node2->prev = prev1;
+            node2->next = next1;
+            next1->prev = node2;
+            prev2->next = node1;
+            node1->prev = prev2;
+            node1->next = NULL;
+            *trailer = node1;
+            return;
+        }
         Node *prev1 = node1->prev;
         Node *next1 = node1->next;
         Node *prev2 = node2->prev;
@@ -200,17 +260,13 @@ void main() {
     Node *trailer = create_node(10);
     header->next = trailer;
     header->prev = header;
-    // display(header, trailer);
     insert_at_pos(&header, &trailer, 1, true, 4);
-    // display(header, trailer);
     insert_at_pos(&header, &trailer, 0, true, 0);
-    // display(header, trailer);
     insert_at_pos(&header, &trailer, -1, true, 11);
-    // display(header, trailer);
     insert_at_pos(&header, &trailer, 3, true, 5);
-    // display(header, trailer);
     insert_at_pos(&header, &trailer, 3, false, 3);
     display(header, trailer);
+    printf("\n> Size: %d\n", size);
     // Working fine
 
     // delete_at_pos(&header, &trailer, -1);
@@ -221,7 +277,15 @@ void main() {
     display(header, trailer);
     // Working fine
 
-    swap(&header, &trailer, 2, 4);
+    swap(&header, &trailer, 0, 1);
     display(header, trailer);
-    // Works fine for Mid. Ends need to be fixed.
+    swap(&header, &trailer, 0, 3);
+    display(header, trailer);
+    swap(&header, &trailer, 5, -1);
+    display(header, trailer);
+    swap(&header, &trailer, 2, -1);
+    display(header, trailer);
+    swap(&header, &trailer, 0, -1);
+    display(header, trailer);
+    // Working Fine
 }
