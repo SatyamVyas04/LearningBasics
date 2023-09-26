@@ -142,8 +142,8 @@ void swap(Node **header, Node **trailer, int pos_1, int pos_2) {
 
     Node *node1 = *header;
     Node *node2 = *header;
-    
-    if(pos_1 == 0 && pos_2 == size - 1){
+
+    if (pos_1 == 0 && pos_2 == size - 1) {
         Node *tail = *trailer;
         Node *head = *header;
         Node *nexttohead = head->next;
@@ -164,7 +164,7 @@ void swap(Node **header, Node **trailer, int pos_1, int pos_2) {
     for (int i = 0; i < pos_2; i++) {
         node2 = node2->next;
     }
-    
+
     if (pos_2 - pos_1 == 1) {
         if (pos_1 == 0) {
             Node *next2 = node2->next;
