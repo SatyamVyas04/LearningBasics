@@ -11,8 +11,6 @@ This repository contains code snippets for the following languages:
 - Java
 - C
 - C++
-- CSS
-- HTML
 
 ## Credits
 
@@ -20,7 +18,6 @@ While these programs are primarily for my learning, I'd like to acknowledge the 
 
 - **Python**: Many thanks to [Mosh Programming](https://codewithmosh.com/) and [Corey Schafer](https://www.youtube.com/user/schafer5) for their excellent tutorials and guidance in learning Python.
 
-- **CSS & HTML**: Credits to the [MDN Web Docs](https://developer.mozilla.org/) for their comprehensive and reliable resources on HTML and CSS.
 
 ## Structure
 
