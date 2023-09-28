@@ -270,8 +270,8 @@ void main() {
     printf("\n> Size: %d\n", size);
     // Working fine
 
-    // delete_at_pos(&header, &trailer, -1);
-    // display(header, trailer);
+    delete_at_pos(&header, &trailer, -1);
+    display(header, trailer);
     // Working fine
 
     reverse(&header);
