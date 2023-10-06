@@ -63,12 +63,12 @@ class Booth:
         self.q = shift[self.size :]
 
     def __repr__(self, remark):
-        print(f"> {self.a}\t{self.q}\t\t{self.q_1}\t{self.count}\t{remark}")
+        print(f"> {self.a}\t{self.q}\t{self.q_1}\t{self.count}\t{remark}")
 
     def algo(self):
         indent = self.size
         print("> A" + " " * indent + "\t", end="")
-        print("Q" + " " * indent + "\t\t", end="")
+        print("Q" + " " * indent + "\t", end="")
         print("Q_1" + "\t", end="")
         print("Count" + "\t", end="")
         print("Remark" + " " * indent + "\t\t")
@@ -76,16 +76,19 @@ class Booth:
         self.__repr__("Initial")
         while self.count != 0:
             self.q0 = self.q[-1]
+            self.__repr__("Current")
             if self.q0 == "1" and self.q_1 == "0":
                 self.a = self.add(self.a, self.subm)
                 self.__repr__("A = A - M")
             elif self.q0 == "0" and self.q_1 == "1":
                 self.a = self.add(self.a, self.m)
                 self.__repr__("A = A + M")
+            else: 
+                pass
             self.asr()
+            self.q_1 = self.q0
             self.__repr__("ASR")
             print()
-            self.q_1 = self.q0
             self.count -= 1
 
         self.__repr__("Final")
