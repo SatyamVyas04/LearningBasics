@@ -27,7 +27,7 @@ class LinkedList:
             return
         if index == 0:
             new_node.next = self.head
-        elif index == -1 or index == len(self) - 1:
+        elif index == -1 or index == len(self):
             traverse = self.head
             while traverse != None and traverse.next != None:
                 traverse = traverse.next
@@ -47,8 +47,7 @@ class LinkedList:
             delete_node = self.head
             self.head = self.head.next
             return delete_node.data
-        if index == -1 or index == len(self) - 1:
-            print('>>>>>>>')
+        if index == -1 or index == len(self):
             delete_node = None
             traverse = self.head
             while traverse.next.next != None:
@@ -56,7 +55,7 @@ class LinkedList:
             delete_node = traverse.next
             traverse.next = None
             return delete_node.data
-        if index > 0 and index < len(self) - 1:
+        if index > 0 and index <= len(self) - 1:
             temp = self.head
             prev = None
             current_index = 0
