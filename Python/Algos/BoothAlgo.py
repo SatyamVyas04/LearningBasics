@@ -93,12 +93,12 @@ class Booth:
 
         self.__repr__("Final")
         if self.qq * self.mm < 0:
-            print("\nANS: " + self.a + self.q)
-            print("ANS Absolute Value: " + self.twoscompfin(self.a + self.q))
+            print("\n> ANS: " + self.a + self.q)
+            print("> ANS Absolute Value: " + self.twoscompfin(self.a + self.q))
         else:
-            print("\nANS: " + self.a + self.q)
-            print("ANS Absolute Value: " + self.a + self.q)
+            print("\nA> NS: " + self.a + self.q)
+            print("> ANS Absolute Value: " + self.a + self.q)
 
 
-booth = Booth(25, -9)
+booth = Booth(-7, 8)
 booth.algo()
