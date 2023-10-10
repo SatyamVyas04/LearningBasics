@@ -3,7 +3,9 @@ class Booth:
         self.mm = multiplicand
         self.qq = multiplier
         self.size = self.get_size()
-
+        self.ans = ''
+        self.binans = 0
+        
         if self.mm < 0:
             self.subm = self.dectobin(abs(self.mm))
             self.m = self.twoscomp(self.subm)
@@ -95,10 +97,23 @@ class Booth:
         if self.qq * self.mm < 0:
             print("\n> ANS: " + self.a + self.q)
             print("> ANS Absolute Value: " + self.twoscompfin(self.a + self.q))
+            self.ans = self.twoscompfin(self.a + self.q)
+            self.binans = -int(self.ans, 2)
         else:
-            print("\nA> NS: " + self.a + self.q)
+            print("\n> ANS: " + self.a + self.q)
             print("> ANS Absolute Value: " + self.a + self.q)
+            self.ans = f'{self.a}{self.q}'
+            self.binans = int(self.ans, 2)
+        
+        print(f">>>>>>> {self.binans}")
+        print("\n")
 
 
-booth = Booth(-7, 8)
+booth = Booth(7, 8)
+booth2 = Booth(7, -8)
+booth3 = Booth(-7, 8)
+booth4 = Booth(-7, -8)
 booth.algo()
+booth2.algo()
+booth3.algo()
+booth4.algo()
