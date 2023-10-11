@@ -69,11 +69,11 @@ class Booth:
 
     def algo(self):
         indent = self.size
-        print("> A" + " " * indent + "\t", end="")
-        print("Q" + " " * indent + "\t", end="")
+        print("> A" + "\t", end="")
+        print("Q" + "\t", end="")
         print("Q_1" + "\t", end="")
         print("Count" + "\t", end="")
-        print("Remark" + " " * indent + "\t\t")
+        print("Remark" + "\t\t")
 
         self.__repr__("Initial")
         while self.count != 0:
@@ -112,7 +112,7 @@ class Booth:
 booth = Booth(7, 8)
 booth2 = Booth(7, -8)
 booth3 = Booth(-7, 8)
-booth4 = Booth(-7, -8)
+booth4 = Booth(-3, -2)
 booth.algo()
 booth2.algo()
 booth3.algo()
