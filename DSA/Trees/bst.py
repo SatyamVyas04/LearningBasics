@@ -35,6 +35,10 @@ class BST:
                     print("> Value already exists! ")
                     break
 
+    def insert_many(self, vals: list[int]) -> None:
+        for i in vals:
+            self.insert(Node(i))
+
     def delete(self, value):
         def delete_node(node, value):
             if node is None:
@@ -131,11 +135,67 @@ class BST:
         print("--> PostOrder Traversal")
 
 
+# Credits: https://stackoverflow.com/a/65865825
+def print_tree(root, value="value", left="left", right="right"):
+    print("\n> BINARY TREE")
+
+    def display(root, value=value, left=left, right=right):
+        """Returns list of strings, width, height, and horizontal coordinate of the root."""
+        # No child.
+        if getattr(root, right) is None and getattr(root, left) is None:
+            line = "%s" % getattr(root, value)
+            width = len(line)
+            height = 1
+            middle = width // 2
+            return [line], width, height, middle
+
+        # Only left child.
+        if getattr(root, right) is None:
+            lines, n, p, x = display(getattr(root, left))
+            s = "%s" % getattr(root, value)
+            u = len(s)
+            first_line = (x + 1) * " " + (n - x - 1) * "_" + s
+            second_line = x * " " + "/" + (n - x - 1 + u) * " "
+            shifted_lines = [line + u * " " for line in lines]
+            return [first_line, second_line] + shifted_lines, n + u, p + 2, n + u // 2
+
+        # Only right child.
+        if getattr(root, left) is None:
+            lines, n, p, x = display(getattr(root, right))
+            s = "%s" % getattr(root, value)
+            u = len(s)
+            first_line = s + x * "_" + (n - x) * " "
+            second_line = (u + x) * " " + "\\" + (n - x - 1) * " "
+            shifted_lines = [u * " " + line for line in lines]
+            return [first_line, second_line] + shifted_lines, n + u, p + 2, u // 2
+
+        # Two children.
+        left, n, p, x = display(getattr(root, left))
+        right, m, q, y = display(getattr(root, right))
+        s = "%s" % getattr(root, value)
+        u = len(s)
+        first_line = (x + 1) * " " + (n - x - 1) * "_" + s + y * "_" + (m - y) * " "
+        second_line = (
+            x * " " + "/" + (n - x - 1 + u + y) * " " + "\\" + (m - y - 1) * " "
+        )
+        if p < q:
+            left += [n * " "] * (q - p)
+        elif q < p:
+            right += [m * " "] * (p - q)
+        zipped_lines = zip(left, right)
+        lines = [first_line, second_line] + [a + u * " " + b for a, b in zipped_lines]
+        return lines, n + m + u, max(p, q) + 2, n + u // 2
+
+    lines, *_ = display(root, value, left, right)
+    for line in lines:
+        print(line)
+
+
 bst = BST()
-bst.insert(Node(5))
-bst.insert(Node(3))
-bst.insert(Node(7))
-bst.insert(Node(2))
-bst.insert(Node(8))
-bst.insert(Node(4))
+bst.insert_many([5, 3, 8, 2, 1, 4, 6, 7, 9, 10])
+print_tree(bst.root)
+bst.display()
+
+bst.delete(5)
+print_tree(bst.root)
 bst.display()
