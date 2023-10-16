@@ -34,10 +34,6 @@ TreeNode *insert(TreeNode *root, int data) {
     return root;
 }
 
-// Function to delete a node with given value from the BST
-TreeNode *delete(TreeNode *root, int data) {
-}
-
 // Function to display the BST in-order
 void display_in(TreeNode *root) {
     if (root != NULL) {
@@ -102,7 +98,38 @@ TreeNode *findNode(struct TreeNode *root, int data) {
     }
 }
 
-void swapValues(TreeNode *root, int data_1, int data_2) {
+// Function to delete a node with given value from the BST
+TreeNode *delete(TreeNode *root, int data) {
+    if (root == NULL)
+        return NULL;
+    if (root->data < data)
+        root->right = delete (root->right, data);
+    else if (root->data > data)
+        root->left = delete (root->left, data);
+    else {
+        // Leaf Node
+        if (root->left == NULL && root->right == NULL) {
+            free(root);
+            return NULL;
+        } // One Child: Right
+        else if (root->left == NULL) {
+            TreeNode *right = root->right;
+            free(root);
+            return right;
+        } // One Child: Left
+        else if (root->right == NULL) {
+            TreeNode *left = root->left;
+            free(root);
+            return left;
+        } // Both Children Present
+        else {
+            TreeNode *right_min_node = minValueNode(root->right);
+            int right_min = right_min_node->data;
+            root->data = right_min;
+            delete (root->right, right_min);
+        }
+    }
+    return root;
 }
 
 // Function to display (L D R) of a Node
@@ -113,9 +140,9 @@ void nodeDetails(TreeNode *root) {
         printf("> NULL NULL  NULL\n");
 
     } else {
-
         printf("\n> ---- Node ----\n");
         printf("> Left Data Right\n");
+        
         if (root->left == NULL) {
             printf("> NULL ");
         } else {
@@ -141,6 +168,7 @@ void main() {
     root = insert(root, 1);
     root = insert(root, 6);
 
+    printf("\nTraversals\n");
     display_in(root);
     printf(" <--- InOrder Traversal\n");
     display_pre(root);
@@ -158,4 +186,13 @@ void main() {
 
     find = findNode(root, 11);
     nodeDetails(find);
+
+    root = delete (root, 5);
+    printf("\nTraversals\n");
+    display_in(root);
+    printf(" <--- InOrder Traversal\n");
+    display_pre(root);
+    printf(" <--- PreOrder Traversal\n");
+    display_post(root);
+    printf(" <--- PostOrder Traversal\n");
 }
