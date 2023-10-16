@@ -177,9 +177,9 @@ void main() {
     printf(" <--- PostOrder Traversal\n");
 
     TreeNode *min = minValueNode(root);
-    printf("\n> Min Data: %d\n", min->data);
+    nodeDetails(min);
     TreeNode *max = maxValueNode(root);
-    printf("\n> Max Data: %d\n", max->data);
+    nodeDetails(max);
 
     TreeNode *find = findNode(root, 5);
     nodeDetails(find);
