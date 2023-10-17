@@ -15,9 +15,6 @@ string add1(string A, string M){
             carry = 0;
         }
     }
- 
-    // Returning the sum from
-    // MSB to LSB
     return string(Sum.rbegin(), Sum.rend());
 }
  
@@ -70,7 +67,6 @@ void nonRestoringDivision(string Q, string M, string A){
 }
 
 string add(string A, string M) {
- 
     int carry = 0;
     string Sum;
     for (int i = A.length() - 1; i >= 0; i--) {
@@ -124,8 +120,7 @@ void restoringDivision(string Q, string M, string A) {
     cout << "\nQuotient(Q):" << Q << " Remainder(A):" << A << endl;
 }
 
-int main()
-{
+int main(){
     int choice;
     do {
         cout<<"\n1.Non-Restoring Division\n";
