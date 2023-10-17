@@ -136,30 +136,31 @@ int main()
         switch (choice) {
         case 1:{
             cout<<"Non-Restoring Division\n";
-                string dividend;
-                string divisor;
-                cout<<"Enter dividend: ";
-                cin>>dividend;
-                cout<<"Enter divisor : ";
-                cin>>divisor;
-                string accumulator = string(dividend.size(), '0');
-                nonRestoringDivision(dividend, divisor, accumulator);
-                break;
+            string dividend;
+            string divisor;
+            cout<<"Enter dividend: ";
+            cin>>dividend;
+            cout<<"Enter divisor : ";
+            cin>>divisor;
+            string accumulator = string(dividend.size(), '0');
+            nonRestoringDivision(dividend, divisor, accumulator);
+            break;
         }
-         case 2:{
-                cout<<"Restoring Division\n";
-                string dividend;
-                string divisor;
-                cout<<"Enter dividend: ";
-                cin>>dividend;
-                cout<<"Enter divisor : ";
-                cin>>divisor;
-                string accumulator= string(dividend.length(), '0');
-                restoringDivision(dividend, divisor, accumulator);
-                break;}
-          case 3:{
-          cout<< "\n Exiting...."<< endl;
-          }
-         default:
-                cout << "\nInvalid choice!\n";}
+        case 2:{
+            cout<<"Restoring Division\n";
+            string dividend;
+            string divisor;
+            cout<<"Enter dividend: ";
+            cin>>dividend;
+            cout<<"Enter divisor : ";
+            cin>>divisor;
+            string accumulator= string(dividend.length(), '0');
+            restoringDivision(dividend, divisor, accumulator);
+            break;}
+        case 3:{
+            cout<< "\n Exiting...."<< endl;
+            break;
+            }
+        default:
+            cout << "\nInvalid choice!\n";}
     }while (choice != 3);}
