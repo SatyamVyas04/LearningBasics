@@ -142,7 +142,7 @@ void nodeDetails(TreeNode *root) {
     } else {
         printf("\n> ---- Node ----\n");
         printf("> Left Data Right\n");
-        
+
         if (root->left == NULL) {
             printf("> NULL ");
         } else {
