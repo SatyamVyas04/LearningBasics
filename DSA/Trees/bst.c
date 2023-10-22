@@ -19,7 +19,7 @@ TreeNode *createNode(int data) {
 // Function to insert a new value into the BST
 TreeNode *insert(TreeNode *root, int data) {
     if (root == NULL) {
-        printf("\n> Inserted %d\n", data);
+        printf("\n> Inserted %d", data);
         return createNode(data);
     }
 
