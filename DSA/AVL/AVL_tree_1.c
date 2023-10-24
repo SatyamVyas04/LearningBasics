@@ -126,7 +126,24 @@ AVLNode *insert(AVLNode *root, int data) {
 }
 
 // Display Level Order Traversal
+void levelOrderTraversal(AVLNode *root, int level) {
+    if (root == NULL) {
+        printf("None ");
+        return;
+    }
+    if (level == 0)
+        printf("%d ", root->data);
+    else if (level > 0) {
+        levelOrderTraversal(root->left, level - 1);
+        levelOrderTraversal(root->right, level - 1);
+    }
+}
 void displayAVLTree(AVLNode *root) {
+    int height = getHeight(root);
+    for (int i = 0; i <= height; i++) {
+        printf("\n> ");
+        levelOrderTraversal(root, i);
+    }
 }
 
 // Display Inorder
@@ -178,6 +195,10 @@ void displayAll(AVLNode *root) {
     printf("Post-order Traversal: ");
     display_post(root);
     printf("\n");
+
+    printf("Level-order Traversal: ");
+    displayAVLTree(root);
+    printf("\n");
 }
 
 int main() {
@@ -186,10 +207,8 @@ int main() {
     root = insert(root, 10);
     root = insert(root, 20);
     root = insert(root, 30);
-
     printf("\n\nAVL Tree Traversals:\n");
     displayAll(root);
-
     freeAVLTree(root);
     return 0;
 }
