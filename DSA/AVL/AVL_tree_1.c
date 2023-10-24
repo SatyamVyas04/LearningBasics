@@ -1,13 +1,3 @@
-// Create an AVLNode ADT and complete the following functions:
-// 1. createNode
-// 2. displayAVLTree
-// 3. getHeight
-// 4. rotateRight
-// 5. rotateLeft
-// 6. getBalance
-// 7. insert
-// 8. freeAVLTree
-
 #include <stdio.h>
 #include <stdlib.h>
 
@@ -18,19 +8,128 @@ typedef struct AVLNode {
     int height;
 } AVLNode;
 
+// Max Function
+int max(int a, int b) {
+    return (a > b) ? a : b;
+}
+
+// Returns Height of the Root
+int getHeight(AVLNode *root) {
+    int lh, rh;
+    if (root == NULL) {
+        return 0;
+    }
+    if (root->left == NULL)
+        lh = 0;
+    else
+        lh = 1 + root->left->height;
+    if (root->right == NULL)
+        rh = 0;
+    else
+        rh = 1 + root->right->height;
+
+    if (lh > rh)
+        return (lh);
+    return (rh);
+}
+
+// Return a New Node
 AVLNode *createNode(int data) {
     AVLNode *node = (AVLNode *)malloc(sizeof(AVLNode));
     node->data = data;
     node->left = NULL;
     node->right = NULL;
-    node->height = 0; // Root Initialisation
+    node->height = 0;
+    return node;
 }
 
-// Function to display the AVLTree in level-order
+// Rotate Right Function
+AVLNode *rotateRight(AVLNode *node) {
+    AVLNode *newnode = node->left;
+    AVLNode *child = newnode->right;
+    newnode->right = node;
+    node->left = child;
+
+    // Update heights
+    node->height = max(getHeight(node->left), getHeight(node->right)) + 1;
+    newnode->height = max(getHeight(newnode->left), getHeight(newnode->right)) + 1;
+    return newnode;
+}
+
+// Rotate Left Function
+AVLNode *rotateLeft(AVLNode *node) {
+    AVLNode *newnode = node->right;
+    AVLNode *child = newnode->left;
+    newnode->left = node;
+    node->right = child;
+
+    // Update heights
+    node->height = max(getHeight(node->left), getHeight(node->right)) + 1;
+    newnode->height = max(getHeight(newnode->left), getHeight(newnode->right)) + 1;
+    return newnode;
+}
+
+// Returns Balance Factor of a Node
+int getBalance(AVLNode *root) {
+    int lh, rh;
+    if (root == NULL)
+        return 0;
+    if (root->left == NULL)
+        lh = 0;
+    else
+        lh = 1 + root->left->height;
+    if (root->right == NULL)
+        rh = 0;
+    else
+        rh = 1 + root->right->height;
+    return lh - rh;
+}
+
+// Inserting a Node into the AVL Tree
+AVLNode *insert(AVLNode *root, int data) {
+    if (root == NULL) {
+        AVLNode *new_node = createNode(data);
+        printf("\n> Inserted %d", data);
+        root = new_node;
+    } else if (data > root->data) {
+        root->right = insert(root->right, data);
+        if (getBalance(root) == -2) {
+            printf("\n>> Balancing the Tree...");
+            if (data > root->right->data) {
+                printf("\n>>> RR Case...");
+                root = rotateLeft(root);
+            } else {
+                root->right = rotateRight(root->right);
+                printf("\n>>> RL Case...");
+                root = rotateLeft(root);
+            }
+        }
+    } else if (data < root->data) {
+        root->left = insert(root->left, data);
+        if (getBalance(root) == 2) {
+            printf("\n>> Balancing the Tree...");
+            if (data < root->left->data) {
+                printf("\n>>> LL Case...");
+                root = rotateRight(root);
+            } else {
+                printf("\n>>> LR Case...");
+                root->left = rotateLeft(root->left);
+                root = rotateRight(root);
+            }
+        }
+    } else {
+        printf("\n>> Data Already Exists!");
+        return root;
+    }
+    root->height = getHeight(root);
+    return root;
+}
+
+// Display Level Order Traversal
 void displayAVLTree(AVLNode *root) {
 }
 
-// Function to display the AVLTree in-order
+// Display Inorder
 void display_in(AVLNode *root) {
     if (root != NULL) {
         display_in(root->left);
@@ -39,7 +138,7 @@ void display_in(AVLNode *root) {
     }
 }
 
-// Function to display the AVLTree pre-order
+// Display Preorder
 void display_pre(AVLNode *root) {
     if (root != NULL) {
         printf("%d ", root->data);
@@ -48,7 +147,7 @@ void display_pre(AVLNode *root) {
     }
 }
 
-// Function to display the AVLTree post-order
+// Display Postorder
 void display_post(AVLNode *root) {
     if (root != NULL) {
         display_post(root->left);
@@ -57,71 +156,40 @@ void display_post(AVLNode *root) {
     }
 }
 
-// Function to get Height of a AVLTree Node
-int getHeight(AVLNode *node) {
-    if (!node)
-        return 0;
-    else {
-        int left_height = tree_height(node->left);
-        int right_height = tree_height(node->right);
-        if (left_height >= right_height)
-            return left_height + 1;
-        else
-            return right_height + 1;
-    }
-}
-
-// function for performing a right rotate
-AVLNode *rotateRight(AVLNode *node) {
-    AVLNode *newnode = node->left;
-    AVLNode *child = newnode->right;
-    newnode->right = node;
-    node->left = child;
-
-    // Updating Heights and Returning
-    node->height = getHeight(node);
-    newnode->height = getHeight(node);
-    return newnode;
-}
-
-// function for performing a left rotate
-AVLNode *rotateLeft(AVLNode *node) {
-    AVLNode *newnode = node->right;
-    AVLNode *child = newnode->left;
-    newnode->left = node;
-    node->right = child;
-
-    // Updating Heights and Returning
-    node->height = getHeight(node);
-    newnode->height = getHeight(node);
-    return newnode;
-}
-
-// get balance factor of given node
-int getBalance(AVLNode *node) {
-    return getHeight(node->right) - getHeight(node->left);
-}
-
-// Function to Insert a new Node in AVLTree
-void insert(AVLNode **root, int data) {
-}
-
-// This frees the memory used by the AVL tree
+// Function to Free Memory
 void freeAVLTree(AVLNode *root) {
-    while (1) {
-        if (root == NULL) {
-            break;
-        } else if (root != NULL && root->left != NULL) {
-            freeTree(root->left);
-        } else if (root != NULL && root->right != NULL) {
-            freeTree(root->right);
-        } else {
-            free(root);
-            return;
-        }
+    if (root != NULL) {
+        freeAVLTree(root->left);
+        freeAVLTree(root->right);
+        free(root);
     }
 }
 
-void main() {
-    // Testing all Methods
+// Function to Display All Traversals
+void displayAll(AVLNode *root) {
+    printf("In-order Traversal: ");
+    display_in(root);
+    printf("\n");
+
+    printf("Pre-order Traversal: ");
+    display_pre(root);
+    printf("\n");
+
+    printf("Post-order Traversal: ");
+    display_post(root);
+    printf("\n");
+}
+
+int main() {
+    AVLNode *root = NULL;
+    root = insert(root, 5);
+    root = insert(root, 10);
+    root = insert(root, 20);
+    root = insert(root, 30);
+
+    printf("\n\nAVL Tree Traversals:\n");
+    displayAll(root);
+
+    freeAVLTree(root);
+    return 0;
 }
