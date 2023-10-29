@@ -203,10 +203,13 @@ void displayAll(AVLNode *root) {
 
 int main() {
     AVLNode *root = NULL;
-    root = insert(root, 5);
     root = insert(root, 10);
     root = insert(root, 20);
-    root = insert(root, 30);
+    root = insert(root, 5);
+    root = insert(root, 7);
+    root = insert(root, 3);
+    root = insert(root, 7);
+    root = insert(root, 9);
     printf("\n\nAVL Tree Traversals:\n");
     displayAll(root);
     freeAVLTree(root);
