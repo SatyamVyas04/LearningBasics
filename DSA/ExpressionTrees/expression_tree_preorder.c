@@ -61,11 +61,11 @@ ExprTreeNode *create_ET_from_prefix(char *prefix_expression) {
             ExprTreeNode *a = pop(stack);
             ExprTreeNode *b = pop(stack);
             ExprTreeNode *c = create_node(OPERATOR, data);
-            c->right = a;
-            c->left = b;
+            c->left = a;
+            c->right = b;
             push(stack, c);
         } else {
-            data.operand = prefix_expression[i] - 48;
+            data.operand = prefix_expression[i] - '0';
             ExprTreeNode *c = create_node(OPERAND, data);
             push(stack, c);
         }
@@ -88,11 +88,38 @@ void ExpTreeDisplay(ExprTreeNode *root) {
     }
 }
 
+void ExpTreeDisplay2(ExprTreeNode *root) {
+    if (root != NULL) {
+        if (isOperator(root->data.operation)) {
+            printf("%c ", root->data.operation);
+        } else {
+            printf("%f ", root->data.operand);
+        }
+        ExpTreeDisplay2(root->left);
+        ExpTreeDisplay2(root->right);
+    }
+}
+
 float evaluate_ET(ExprTreeNode *root) {
+    if (root->left != NULL || root->right != NULL) {
+        float ans = 0;
+        float left = evaluate_ET(root->left);
+        float right = evaluate_ET(root->right);
+        char op = root->data.operation;
+        if (isOperator(op)) {
+            ans = perform_operation(op, left, right);
+        }
+        return ans;
+    } else {
+        return root->data.operand;
+    }
 }
 
 void main() {
-    char exp[10] = {'+', '-', '*', '5', '4', '3', '2', '\0'};
+    char exp[] = "*+52-63";
     ExprTreeNode *root = create_ET_from_prefix(exp);
     ExpTreeDisplay(root);
+    printf("\n\n");
+    ExpTreeDisplay2(root);
+    printf("> ANS: %f", evaluate_ET(root));
 }
