@@ -6,15 +6,15 @@
  * Description: This contains the ADTS for Stack and ExpressionTreeNode
  */
 
-
 typedef union {
     char operation;
     float operand;
-} Data; 
+} Data;
 
-typedef enum {OPERATOR, OPERAND} OpType;
+typedef enum { OPERATOR,
+               OPERAND } OpType;
 
-typedef struct ExprTreeNode{
+typedef struct ExprTreeNode {
     OpType type;
     Data data;
     struct ExprTreeNode *left;
@@ -22,24 +22,21 @@ typedef struct ExprTreeNode{
 } ExprTreeNode;
 
 // complete this function
-ExprTreeNode *create_node(OpType op_type, Data data); 
+ExprTreeNode *create_node(OpType op_type, Data data);
 // complete this function
-ExprTreeNode *create_ET_from_prefix(char* prefix_expression);
+ExprTreeNode *create_ET_from_prefix(char *prefix_expression);
 // complete this function
-float evaluate_ET(ExprTreeNode* exp_tree);
+float evaluate_ET(ExprTreeNode *exp_tree);
 
-
-typedef struct Stack
-{
+typedef struct Stack {
     int top;
     unsigned size;
-    ExprTreeNode** array;
+    ExprTreeNode **array;
 } Stack;
 
-void display(Stack* stack);
-Stack* initialize_stack(unsigned size);
-int isEmpty(Stack* stack);
+void display(Stack *stack);
+Stack *initialize_stack(unsigned size);
+int isEmpty(Stack *stack);
 void push(Stack *stack, ExprTreeNode *item);
-void peek(Stack* stack);
-ExprTreeNode *pop(Stack* stack);
-
+void peek(Stack *stack);
+ExprTreeNode *pop(Stack *stack);
