@@ -40,16 +40,59 @@ float perform_operation(char op, float left, float right) {
     }
 }
 
-// TODO: To be completed
 ExprTreeNode *create_node(OpType op_type, Data data) {
+    ExprTreeNode *treenode = (ExprTreeNode *)malloc(sizeof(ExprTreeNode));
+    treenode->type = op_type;
+    treenode->left = NULL;
+    treenode->right = NULL;
+    treenode->data = data;
+    return treenode;
 }
 
-// TODO: To be completed
-// NOTE: Use the stack 'display' in this function to display stack state right after a given character in the expression has been processed.
-// Do this for all characters of the expression string
 ExprTreeNode *create_ET_from_prefix(char *prefix_expression) {
+    ExprTreeNode *root = NULL;
+    int length = strlen(prefix_expression);
+    printf("> %d", length);
+    Stack *stack = initialize_stack(length);
+    Data data;
+    for (int i = length - 1; i >= 0; i--) {
+        if (isOperator(prefix_expression[i])) {
+            data.operation = prefix_expression[i];
+            ExprTreeNode *a = pop(stack);
+            ExprTreeNode *b = pop(stack);
+            ExprTreeNode *c = create_node(OPERATOR, data);
+            c->right = a;
+            c->left = b;
+            push(stack, c);
+        } else {
+            data.operand = prefix_expression[i] - 48;
+            ExprTreeNode *c = create_node(OPERAND, data);
+            push(stack, c);
+        }
+        display(stack);
+    }
+    root = pop(stack);
+    free(stack);
+    return root;
 }
 
-// TODO: To be completed
+void ExpTreeDisplay(ExprTreeNode *root) {
+    if (root != NULL) {
+        ExpTreeDisplay(root->left);
+        if (isOperator(root->data.operation)) {
+            printf("%c ", root->data.operation);
+        } else {
+            printf("%f ", root->data.operand);
+        }
+        ExpTreeDisplay(root->right);
+    }
+}
+
 float evaluate_ET(ExprTreeNode *root) {
+}
+
+void main() {
+    char exp[10] = {'+', '-', '*', '5', '4', '3', '2', '\0'};
+    ExprTreeNode *root = create_ET_from_prefix(exp);
+    ExpTreeDisplay(root);
 }

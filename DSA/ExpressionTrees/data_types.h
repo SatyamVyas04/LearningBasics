@@ -21,11 +21,8 @@ typedef struct ExprTreeNode {
     struct ExprTreeNode *right;
 } ExprTreeNode;
 
-// complete this function
 ExprTreeNode *create_node(OpType op_type, Data data);
-// complete this function
 ExprTreeNode *create_ET_from_prefix(char *prefix_expression);
-// complete this function
 float evaluate_ET(ExprTreeNode *exp_tree);
 
 typedef struct Stack {
