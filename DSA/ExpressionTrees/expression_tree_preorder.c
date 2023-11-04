@@ -52,7 +52,7 @@ ExprTreeNode *create_node(OpType op_type, Data data) {
 ExprTreeNode *create_ET_from_prefix(char *prefix_expression) {
     ExprTreeNode *root = NULL;
     int length = strlen(prefix_expression);
-    printf("> %d", length);
+    printf("> %d\n", length);
     Stack *stack = initialize_stack(length);
     Data data;
     for (int i = length - 1; i >= 0; i--) {
