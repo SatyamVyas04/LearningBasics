@@ -76,27 +76,27 @@ ExprTreeNode *create_ET_from_prefix(char *prefix_expression) {
     return root;
 }
 
-void ExpTreeDisplay(ExprTreeNode *root) {
+void InOrderDisplay(ExprTreeNode *root) {
     if (root != NULL) {
-        ExpTreeDisplay(root->left);
+        InOrderDisplay(root->left);
         if (isOperator(root->data.operation)) {
             printf("%c ", root->data.operation);
         } else {
-            printf("%f ", root->data.operand);
+            printf("%.2f ", root->data.operand);
         }
-        ExpTreeDisplay(root->right);
+        InOrderDisplay(root->right);
     }
 }
 
-void ExpTreeDisplay2(ExprTreeNode *root) {
+void PrefixDisplay(ExprTreeNode *root) {
     if (root != NULL) {
         if (isOperator(root->data.operation)) {
             printf("%c ", root->data.operation);
         } else {
-            printf("%f ", root->data.operand);
+            printf("%.2f ", root->data.operand);
         }
-        ExpTreeDisplay2(root->left);
-        ExpTreeDisplay2(root->right);
+        PrefixDisplay(root->left);
+        PrefixDisplay(root->right);
     }
 }
 
@@ -116,10 +116,10 @@ float evaluate_ET(ExprTreeNode *root) {
 }
 
 void main() {
-    char exp[] = "*+52-63";
+    char exp[] = "*+12-5/84";
     ExprTreeNode *root = create_ET_from_prefix(exp);
-    ExpTreeDisplay(root);
-    printf("\n\n");
-    ExpTreeDisplay2(root);
-    printf("> ANS: %f", evaluate_ET(root));
+    InOrderDisplay(root);
+    printf("\n");
+    PrefixDisplay(root);
+    printf("\n\n> ANS: %.3f", evaluate_ET(root));
 }
