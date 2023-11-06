@@ -9,6 +9,9 @@ GraphRep *init_graph(int num_vertices, bool is_directed) {
     graph->nV = num_vertices;
     graph->is_directed = is_directed;
     graph->edges = (int **)malloc(sizeof(int *) * num_vertices * num_vertices);
+    graph->distance = (int *)malloc(sizeof(int) * num_vertices);
+    graph->predecessor = (Vertex *)malloc(sizeof(Vertex) * num_vertices);
+    graph->color = (Color *)malloc(sizeof(Color) * num_vertices);
 
     for (int i = 0; i < num_vertices; i++) {
         graph->edges[i] = (int *)malloc(sizeof(int) * num_vertices);
@@ -49,7 +52,44 @@ void remove_edge(GraphRep *graph, Edge e) {
 
 // NOTE: BFS Traversal should additionally update the following in the graph:
 // 1. distance --> this array would hold the number of hops it takes to reach a given vertex (indicated by the array index) from the source.
-void traverse_bfs(GraphRep *graph, Vertex source);
+void traverse_bfs(GraphRep *graph, Vertex source) {
+    graph->type = BFS;
+    graph->source = source;
+    for (int i = 0; i < graph->nV; i++) {
+        graph->color[i] = WHITE;
+        graph->distance[i] = 100;
+        graph->predecessor[i] = -1;
+    }
+
+    graph->color[source] = GRAY;
+    graph->distance[source] = 0;
+    graph->predecessor[source] = -1;
+
+    printf("\n>>> HERE---\n");
+    Queue *q = initialize_queue(graph->nV);
+    enqueue(q, source);
+
+    while (!(isEmpty(q))) {
+        Vertex u = dequeue(q);
+        for (int i = 0; i < graph->nV; i++) {
+            Vertex v = i;
+            if (graph->color[v] == WHITE) {
+                graph->color[v] = GRAY;
+                graph->distance[v] = graph->distance[u] + 1;
+                graph->predecessor[i] = u;
+                enqueue(q, v);
+            }
+        }
+        graph->color[u] = BLACK;
+    }
+    for (int i = 0; i < graph->nV; i++) {
+        printf("\n> %d  ", graph->distance[i]);
+    }
+    printf("\n------\n");
+    for (int i = 0; i < graph->nV; i++) {
+        printf("\n> %d  ", graph->predecessor[i]);
+    }
+}
 
 // NOTE: DFS Traversal should additionally update the following in the graph:
 // 1. distance --> Assuming 1 hop to equal 1 time unit, this array would hold the time of discovery a given vertex (indicated by the array index) from the source.
@@ -62,7 +102,7 @@ void display_path(GraphRep *graph, Vertex destination);
 
 // display the graph in the matrix form
 void display_graph(GraphRep *graph) {
-    printf("\n------------------ Graph ------------------\n");
+    printf("\n\n------------------ Graph ------------------\n");
     for (int i = 0; i < graph->nV; i++) {
         printf("\t[%d]", i);
     }
@@ -91,4 +131,8 @@ void main() {
     e.v = 4;
     insert_edge(g, e);
     display_graph(g);
+
+    Vertex v;
+    v = 0;
+    traverse_bfs(g, v);
 }
