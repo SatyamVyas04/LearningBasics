@@ -10,6 +10,7 @@ GraphRep *init_graph(int num_vertices, bool is_directed) {
     graph->is_directed = is_directed;
     graph->edges = (int **)malloc(sizeof(int *) * num_vertices * num_vertices);
     graph->distance = (int *)malloc(sizeof(int) * num_vertices);
+    graph->finish = (int *)malloc(sizeof(int) * num_vertices);
     graph->predecessor = (Vertex *)malloc(sizeof(Vertex) * num_vertices);
     graph->color = (Color *)malloc(sizeof(Color) * num_vertices);
 
@@ -43,21 +44,12 @@ void remove_edge(GraphRep *graph, Edge e) {
     }
 }
 
-// NOTE: During both DFS and BFS traversals, when at a vertex that is connected with multiple vertices, always pick the connecting vertex which has the lowest value first
-// Both traversals will always update the following attributes of the Graph:
-// 1. source -> stores the value of the starting vertex for the traversal
-// 2. type -> stores the traversal type (BFS or DFS)
-// 3. color --> indicates if all vertices have been visited or not. Post traversal, all vertices should be BLACK
-// 4. predecessor --> this array would hold the predecessor for a given vertex (indicated by the array index).
-
-// NOTE: BFS Traversal should additionally update the following in the graph:
-// 1. distance --> this array would hold the number of hops it takes to reach a given vertex (indicated by the array index) from the source.
 void traverse_bfs(GraphRep *graph, Vertex source) {
     graph->type = BFS;
     graph->source = source;
     for (int i = 0; i < graph->nV; i++) {
         graph->color[i] = WHITE;
-        graph->distance[i] = 100;
+        graph->distance[i] = -1;
         graph->predecessor[i] = -1;
     }
 
@@ -65,42 +57,106 @@ void traverse_bfs(GraphRep *graph, Vertex source) {
     graph->distance[source] = 0;
     graph->predecessor[source] = -1;
 
-    printf("\n>>> HERE---\n");
     Queue *q = initialize_queue(graph->nV);
     enqueue(q, source);
 
-    while (!(isEmpty(q))) {
+    while (!isEmpty(q)) {
         Vertex u = dequeue(q);
-        for (int i = 0; i < graph->nV; i++) {
-            Vertex v = i;
-            if (graph->color[v] == WHITE) {
+        for (Vertex v = 0; v < graph->nV; v++) {
+            if (graph->edges[u][v] == 1 && graph->color[v] == WHITE) {
                 graph->color[v] = GRAY;
                 graph->distance[v] = graph->distance[u] + 1;
-                graph->predecessor[i] = u;
+                graph->predecessor[v] = u;
                 enqueue(q, v);
             }
         }
         graph->color[u] = BLACK;
     }
-    for (int i = 0; i < graph->nV; i++) {
-        printf("\n> %d  ", graph->distance[i]);
-    }
-    printf("\n------\n");
-    for (int i = 0; i < graph->nV; i++) {
-        printf("\n> %d  ", graph->predecessor[i]);
+
+    printf("\n> BFS Distances:");
+    for (Vertex v = 0; v < graph->nV; v++) {
+        printf("\n>> Vertex %d: Distance = %d", v, graph->distance[v]);
     }
 }
 
-// NOTE: DFS Traversal should additionally update the following in the graph:
-// 1. distance --> Assuming 1 hop to equal 1 time unit, this array would hold the time of discovery a given vertex (indicated by the array index) from the source.
-// 2. finish --> Assuming 1 hop to equal 1 time unit, this array would hold the time at which exploration concludes for a given vertex (indicated by the array index).
-void traverse_dfs(GraphRep *graph, Vertex source);
+void dfs(GraphRep *graph, Vertex u);
+void traverse_dfs(GraphRep *graph, Vertex source) {
+    graph->type = DFS;
+    graph->source = source;
+    for (Vertex v = 0; v < graph->nV; v++) {
+        graph->color[v] = WHITE;
+        graph->distance[v] = -1;
+        graph->predecessor[v] = -1;
+        graph->finish[v] = -1;
+    }
+    int time = 0;
+    dfs(graph, source);
 
-// displays the path from the current 'source' in graph to the provided 'destination'.
-// The graph holds the value of the traversal type, so the function should let the caller know what kind of traversal was done on the graph and from which vertex, along with the path.
-void display_path(GraphRep *graph, Vertex destination);
+    printf("\n> DFS Times:");
+    for (Vertex v = 0; v < graph->nV; v++) {
+        printf("\n>> Vertex %d: Discovery Time = %d, Finish Time = %d",
+               v, graph->distance[v],
+               graph->finish[v]);
+    }
+}
 
-// display the graph in the matrix form
+void dfs(GraphRep *graph, Vertex u) {
+    graph->color[u] = GRAY;
+    graph->distance[u] = u;
+    for (Vertex v = 0; v < graph->nV; v++) {
+        if (graph->edges[u][v] == 1 && graph->color[v] == WHITE) {
+            graph->predecessor[v] = u;
+            dfs(graph, v);
+        }
+    }
+    graph->color[u] = BLACK;
+    graph->finish[u] = u;
+}
+
+void display_path(GraphRep *graph, Vertex destination) {
+    if (graph == NULL || destination < 0 || destination >= graph->nV) {
+        printf("\n> Invalid input\n");
+        return;
+    }
+
+    if (graph->type == BFS) {
+        printf("\n\n> BFS Path Display\n>> Source: %d\n>> Destination: %d", graph->source, destination);
+        if (graph->color[destination] != BLACK) {
+            printf("\n> No path from source to destination.\n");
+        } else {
+            printf("\n> Shortest path from source to destination (BFS):\n");
+            Vertex current = destination;
+            while (current != -1) {
+                printf("%d", current);
+                current = graph->predecessor[current];
+                if (current != -1) {
+                    printf(" <- ");
+                }
+            }
+            printf(" | Distance: %d\n", graph->distance[destination]);
+        }
+    } else {
+        printf("\n\n> DFS Path Display\n>> Source: %d\n>> Destination: %d", graph->source, destination);
+        if (graph->color[destination] != BLACK) {
+            printf("\n> No path from source to destination.\n");
+        } else {
+            printf("\n> Shortest path from source to destination (BFS):\n");
+            Vertex current = destination;
+            while (current != -1) {
+                printf("%d", current);
+                current = graph->predecessor[current];
+                if (current != -1) {
+                    printf(" <- ");
+                }
+            }
+            printf(" | Discovery Time: %d | Finish Time: %d\n",
+                   graph->distance[destination],
+                   graph->finish[destination]);
+        }
+    }
+    printf("\n");
+}
+
 void display_graph(GraphRep *graph) {
     printf("\n\n------------------ Graph ------------------\n");
     for (int i = 0; i < graph->nV; i++) {
@@ -112,27 +168,41 @@ void display_graph(GraphRep *graph) {
             printf("\t %d", graph->edges[i][j]);
         }
     }
+    printf("\n");
 }
 
-void main() {
+int main() {
     GraphRep *g = init_graph(5, true);
     display_graph(g);
     Edge e;
-    e.u = 1;
-    e.v = 2;
-    insert_edge(g, e);
     e.u = 0;
     e.v = 1;
     insert_edge(g, e);
-    e.u = 4;
-    e.v = 3;
+    e.u = 1;
+    e.v = 2;
     insert_edge(g, e);
     e.u = 1;
     e.v = 4;
     insert_edge(g, e);
+    e.u = 2;
+    e.v = 3;
+    insert_edge(g, e);
+    e.u = 2;
+    e.v = 4;
+    insert_edge(g, e);
+    e.u = 4;
+    e.v = 0;
+    insert_edge(g, e);
+    e.u = 4;
+    e.v = 2;
+    insert_edge(g, e);
     display_graph(g);
 
-    Vertex v;
-    v = 0;
-    traverse_bfs(g, v);
+    traverse_bfs(g, 0);
+    display_path(g, 3);
+
+    traverse_dfs(g, 0);
+    display_path(g, 3);
+
+    return 0;
 }
