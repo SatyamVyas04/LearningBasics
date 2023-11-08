@@ -79,7 +79,7 @@ void traverse_bfs(GraphRep *graph, Vertex source) {
     }
 }
 
-void dfs(GraphRep *graph, Vertex u);
+void dfs(GraphRep *graph, Vertex u, int *time);
 void traverse_dfs(GraphRep *graph, Vertex source) {
     graph->type = DFS;
     graph->source = source;
@@ -90,27 +90,27 @@ void traverse_dfs(GraphRep *graph, Vertex source) {
         graph->finish[v] = -1;
     }
     int time = 0;
-    dfs(graph, source);
+    dfs(graph, source, &time);
 
     printf("\n> DFS Times:");
     for (Vertex v = 0; v < graph->nV; v++) {
-        printf("\n>> Vertex %d: Discovery Time = %d, Finish Time = %d",
+        printf("\n>> Vertex %d: Discovery Time = %2d | Finish Time = %2d",
                v, graph->distance[v],
                graph->finish[v]);
     }
 }
 
-void dfs(GraphRep *graph, Vertex u) {
+void dfs(GraphRep *graph, Vertex u, int *time) {
     graph->color[u] = GRAY;
-    graph->distance[u] = u;
+    graph->distance[u] = ++(*time);
     for (Vertex v = 0; v < graph->nV; v++) {
         if (graph->edges[u][v] == 1 && graph->color[v] == WHITE) {
             graph->predecessor[v] = u;
-            dfs(graph, v);
+            dfs(graph, v, time);
         }
     }
     graph->color[u] = BLACK;
-    graph->finish[u] = u;
+    graph->finish[u] = ++(*time);
 }
 
 void display_path(GraphRep *graph, Vertex destination) {
@@ -149,7 +149,7 @@ void display_path(GraphRep *graph, Vertex destination) {
                     printf(" <- ");
                 }
             }
-            printf(" | Discovery Time: %d | Finish Time: %d\n",
+            printf(" | Discovery Time: %2d | Finish Time: %2d\n",
                    graph->distance[destination],
                    graph->finish[destination]);
         }
@@ -172,37 +172,38 @@ void display_graph(GraphRep *graph) {
 }
 
 int main() {
-    GraphRep *g = init_graph(5, true);
+    GraphRep *g = init_graph(6, true);
     display_graph(g);
     Edge e;
     e.u = 0;
     e.v = 1;
     insert_edge(g, e);
-    e.u = 1;
+    e.u = 0;
     e.v = 2;
     insert_edge(g, e);
-    e.u = 1;
-    e.v = 4;
-    insert_edge(g, e);
-    e.u = 2;
+    e.u = 0;
     e.v = 3;
     insert_edge(g, e);
     e.u = 2;
     e.v = 4;
     insert_edge(g, e);
-    e.u = 4;
-    e.v = 0;
-    insert_edge(g, e);
-    e.u = 4;
-    e.v = 2;
+    e.u = 2;
+    e.v = 5;
     insert_edge(g, e);
     display_graph(g);
 
+    /*   ____ 0 __
+        |    |   |
+        1   2   3
+           / \
+          4  5
+    */
+
     traverse_bfs(g, 0);
-    display_path(g, 3);
+    display_path(g, 5);
 
     traverse_dfs(g, 0);
-    display_path(g, 3);
+    display_path(g, 5);
 
     return 0;
 }
