@@ -14,11 +14,9 @@ class FIFO:
         print("Cache: [ " + " | ".join(self.cache) + " ] <- CacheMEM")
         print(
             "PTR:   [ "
-            + " " * self.oldest_location_ptr * self.size_of_cache
+            + " " * self.oldest_location_ptr * 4
             + "\u2191"
-            + " "
-            * (self.size_of_cache - self.oldest_location_ptr - 1)
-            * self.size_of_cache
+            + " " * (self.size_of_cache - self.oldest_location_ptr - 1) * 4
             + " ] <- ToBeReplaced",
             end=" ",
         )
@@ -34,7 +32,7 @@ class FIFO:
             if i in self.cache:
                 hit_index = self.cache.index(i)
                 self.hit_updations(hit_index)
-            elif i not in self.cache and index <= 3:
+            elif i not in self.cache and self.cache.count("_")>0:
                 self.age_increment()
                 self.cache[self.cache.index("_")] = i
                 self.ages[self.ages.index(0)] = 1
