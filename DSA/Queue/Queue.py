@@ -45,3 +45,15 @@ class Queue:
             print(f"> {self.array.index(item) + 1} in Queue\n")
         else:
             print(f"> {item} not found!")
+
+# Basic methods of a Queue
+# enqueue: add element at the front 
+# dequeue: remove element at front 
+# front: returns element at front 
+# back: returns element at back
+# display: prints the queue properly 
+# search: search for an element in queue
+# size: returns count of elements in the queue
+# is_empty: checks for underflow
+# is_full: checks for overflow
+# clear: free space 

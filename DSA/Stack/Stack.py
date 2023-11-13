@@ -44,3 +44,13 @@ class Stack:
     def clear(self):
         self.array = []
 
+# Basic Methods of a Stack
+# push: adds a new element at top
+# pop: removes top element
+# peek: returns top element
+# isEmpty or is_empty: checks for underflow
+# isFull or is_full: check for overflow
+# size: returns the number of elements in the stack
+# search: find an element in the stack
+# display: print the complete stack 
+# clear: free space 
