@@ -89,4 +89,25 @@ print(repr(ll))
 print(ll.delete_node(6))
 print(repr(ll))
 
-# Basic Implementation Done
+# Basic Features in a Linked List
+#   > Contains a node that can store data and points to next node
+#   > It can store data in non-contiguous manner
+#   > Data access is slowed to O(n), as compared to Arrays
+#   > Data insertion and deletion are made faster O(1)
+
+# Basic Implementation
+#   > Node class
+#         init method
+#   > LL class
+#         init method
+#         display method
+#         insert_node
+#         delete_node
+#         is_empty
+#         free_ll
+
+# Types of LinkedList
+#   > Linear
+#   > Circular
+#   > Doubly LL
+#   > Generalised LL
