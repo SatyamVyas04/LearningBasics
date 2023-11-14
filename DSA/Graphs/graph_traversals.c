@@ -140,7 +140,7 @@ void display_path(GraphRep *graph, Vertex destination) {
         if (graph->color[destination] != BLACK) {
             printf("\n> No path from source to destination.\n");
         } else {
-            printf("\n> Shortest path from source to destination (BFS):\n");
+            printf("\n> Fastest path from source to destination (BFS):\n");
             Vertex current = destination;
             while (current != -1) {
                 printf("%d", current);
@@ -175,37 +175,25 @@ int main() {
     GraphRep *g = init_graph(6, true);
     display_graph(g);
     Edge e;
-    e.u = 0;
-    e.v = 1;
-    insert_edge(g, e);
-    e.u = 0;
-    e.v = 2;
-    insert_edge(g, e);
-    e.u = 1;
-    e.v = 3;
-    insert_edge(g, e);
-    e.u = 2;
-    e.v = 4;
-    insert_edge(g, e);
-    e.u = 3;
-    e.v = 4;
-    insert_edge(g, e);
+    e.u = 0; e.v = 1; insert_edge(g, e);
+    e.u = 0; e.v = 2; insert_edge(g, e);
+    e.u = 0; e.v = 3; insert_edge(g, e);
+    e.u = 2; e.v = 4; insert_edge(g, e);
+    e.u = 2; e.v = 5; insert_edge(g, e);
     display_graph(g);
 
-    /*  0______
-        |     |
-        1     2
-        |    /
-        3   /
-        |  /
-        4
+    /*   ____0____
+        |    |   |
+        1    2   3
+            / \
+           4  5
     */
 
     traverse_bfs(g, 0);
-    display_path(g, 4);
+    display_path(g, 5);
 
     traverse_dfs(g, 0);
-    display_path(g, 4);
+    display_path(g, 5);
 
     return 0;
 }
