@@ -181,29 +181,31 @@ int main() {
     e.u = 0;
     e.v = 2;
     insert_edge(g, e);
-    e.u = 0;
+    e.u = 1;
     e.v = 3;
     insert_edge(g, e);
     e.u = 2;
     e.v = 4;
     insert_edge(g, e);
-    e.u = 2;
-    e.v = 5;
+    e.u = 3;
+    e.v = 4;
     insert_edge(g, e);
     display_graph(g);
 
-    /*   ____ 0 __
-        |    |   |
-        1   2   3
-           / \
-          4  5
+    /*  0______
+        |     |
+        1     2
+        |    /
+        3   /
+        |  /
+        4
     */
 
     traverse_bfs(g, 0);
-    display_path(g, 5);
+    display_path(g, 4);
 
     traverse_dfs(g, 0);
-    display_path(g, 5);
+    display_path(g, 4);
 
     return 0;
 }
