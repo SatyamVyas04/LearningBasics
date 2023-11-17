@@ -199,3 +199,22 @@ bst.display()
 bst.delete(5)
 print_tree(bst.root)
 bst.display()
+
+
+# Basic Features in a Binary
+#   > Left Node contains data that is less than Head Node
+#   > Right Node contains data that is greater than Head Node
+#   > All times are O(log(N))
+#   > If unbalanced, all times are slowed to O(N), worse than simple Array
+
+# Basic Implementation
+#   > Node class
+#         init method
+#   > BST class
+#         init method
+#         display method
+#         insert_node
+#         delete_node
+#         is_empty
+#         free_tree
+#         find, delete, get_max and more

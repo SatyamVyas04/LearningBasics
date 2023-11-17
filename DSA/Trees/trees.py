@@ -39,3 +39,26 @@ print(is_full_binary_tree(tree))
 print(depth_of_tree(tree))
 print("\n> Tree ")
 display(tree)
+
+
+# Basic Features in a Tree 
+#   > Contains a tree_node that can store data and points to left and right
+#   > It can store data in non-contiguous manner
+#   > Improved Avg Access, Search, Insert and Delete times: O(log(n))
+
+# Basic Implementation
+#   > Node class
+#         init method
+#   > Trees class
+#         init method
+#         display method
+#         insert_node
+#         delete_node
+#         get_height
+#         is_empty
+#         free_tree
+
+# Types of Trees
+#   > Generic
+#   > Binary Search Tree
+#   > AVL Tree
