@@ -116,7 +116,7 @@ int delete_key(HashTable *ht, char *key) {
     int index = hash_function(key, ht->size);
     int original_index = index;
 
-    // Linear probing to handle collisions
+    // Quadratic probing to handle collisions
     while (ht->array[index] != NULL) {
         if (strcmp(ht->array[index]->key, key) == 0 && !ht->array[index]->isDeleted) {
             // Mark it Deleted
@@ -188,16 +188,16 @@ int main() {
     // Test search and delete operations
     char *search_result = search_key(ht, "sport");
     if (search_result != NULL) {
-        printf("Search Result for 'sport': %s\n", search_result);
+        printf("> Search Result for 'sport': %s\n", search_result);
     } else {
-        printf("Key 'sport' not found.\n");
+        printf("> Key 'sport' not found\n");
     }
 
     int delete_result = delete_key(ht, "holiday");
     if (delete_result != -1) {
-        printf("Deleted key 'holiday' at index %d.\n", delete_result);
+        printf("> Deleted key 'holiday' at index [%d]\n", delete_result);
     } else {
-        printf("Key 'holiday' not found for deletion.\n");
+        printf("> Key 'holiday' not found for deletion\n");
     }
 
     // Display the hash table
