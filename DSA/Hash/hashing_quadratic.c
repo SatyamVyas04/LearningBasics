@@ -46,9 +46,11 @@ HashTable *createHashTable() {
 
 int key_to_int(char *key) {
     int sum = 0;
+    int index = 0;
     while (*key) {
-        sum += *key;
+        sum += (*key) * (index + 1);
         key++;
+        index++;
     }
     return sum;
 }
@@ -61,27 +63,19 @@ int insert_key_value(HashTable *ht, char *key, char *value) {
     if (ht == NULL || key == NULL || value == NULL)
         return -1;
 
-    // Check load factor and resize if necessary
-    if ((float)(ht->num_occupied_indices + 1) / ht->size > ht->load_factor) {
-        // Resize and rehash
-        // (omitted for simplicity)
-    }
-
     int index = hash_function(key, ht->size);
     int original_index = index;
-    int i = 1; // Quadratic probing counter
+    int i = 1; // Quadratic Probing Counter
 
-    // Quadratic probing to handle collisions
     while (ht->array[index] != NULL) {
         if (strcmp(ht->array[index]->key, key) == 0 && !ht->array[index]->isDeleted)
-            return -1; // Key already exists, insertion failed
-
+            return -1; // Similar Key
         index = (original_index + i * i) % ht->size;
         i++;
 
-        // Check if we have traversed the entire table
+        // Table Traversed Completely or Not
         if (index == original_index)
-            return -1; // Table is full, insertion failed
+            return -1; // Table Failed
     }
 
     // Insert the key-value pair
@@ -89,7 +83,6 @@ int insert_key_value(HashTable *ht, char *key, char *value) {
     ht->num_keys++;
     ht->num_occupied_indices++;
     ht->num_ops++;
-
     return index;
 }
 
@@ -99,17 +92,16 @@ char *search_key(HashTable *ht, char *key) {
 
     int index = hash_function(key, ht->size);
     int original_index = index;
-    int i = 1; // Quadratic probing counter
+    int i = 1; // Quadratic Probing Counter
 
-    // Quadratic probing to handle collisions
     while (ht->array[index] != NULL) {
-        if (strcmp(ht->array[index]->key, key) == 0 && !ht->array[index]->isDeleted)
+        if (strcmp(ht->array[index]->key, key) == 0 && !ht->array[index]->isDeleted) {
             return ht->array[index]->value;
-
+        }
         index = (original_index + i * i) % ht->size;
         i++;
 
-        // Check if we have traversed the entire table
+        // Table Traversed Completely or Not
         if (index == original_index)
             break;
     }
@@ -127,16 +119,15 @@ int delete_key(HashTable *ht, char *key) {
     // Linear probing to handle collisions
     while (ht->array[index] != NULL) {
         if (strcmp(ht->array[index]->key, key) == 0 && !ht->array[index]->isDeleted) {
-            // Mark the entry as deleted
+            // Mark it Deleted
             ht->array[index]->isDeleted = true;
             ht->num_keys--;
             ht->num_ops++;
             return index;
         }
-
         index = (index + 1) % ht->size;
 
-        // Check if we have traversed the entire table
+        // Table Traversed Completely or Not
         if (index == original_index)
             break;
     }
@@ -147,26 +138,31 @@ int delete_key(HashTable *ht, char *key) {
 int get_load_factor(HashTable *ht) {
     if (ht == NULL || ht->size == 0)
         return -1;
-
     return (float)ht->num_keys / ht->size;
 }
 
 int get_avg_probes(HashTable *ht) {
     if (ht == NULL || ht->num_ops == 0)
         return -1;
-
     return ht->num_ops / ht->num_keys;
 }
 
 void display(HashTable *ht) {
     if (ht == NULL)
         return;
-
     printf("Hash Table:\n");
+    printf("| %-10s | %-15s | %-15s |\n", "Index", "Key", "Value");
+    printf("|------------|-----------------|-----------------|\n");
     for (int i = 0; i < ht->size; i++) {
-        printf("[%d]: ", i);
+        printf("| %-10d |", i);
         if (ht->array[i] != NULL) {
-            printf("(%s, %s)", ht->array[i]->key, ht->array[i]->value);
+            if (ht->array[i]->isDeleted) {
+                printf(" %-15s | %-15s |", "(Deleted)", "(Deleted)");
+            } else {
+                printf(" %-15s | %-15s |", ht->array[i]->key, ht->array[i]->value);
+            }
+        } else {
+            printf(" %-15s | %-15s |", "(Empty)", "(Empty)");
         }
         printf("\n");
     }
@@ -206,9 +202,5 @@ int main() {
 
     // Display the hash table
     display(ht);
-
-    // Clean up memory
-    // (omitted for simplicity)
-
     return 0;
 }
