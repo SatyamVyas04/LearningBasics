@@ -29,6 +29,7 @@ void destroyHeap(MaxHeap* heap){
 /// @param heap 
 /// @param i - index of the max-heap array, which might potentialy be breaking the heap order
 void heapify(MaxHeap* heap, int i){
+    // NEEDS TO BE FIXED
     int largest_element_index;
     int left_child_index = 2*i;
     int right_child_index = 2*i+1;
@@ -49,14 +50,22 @@ void heapify(MaxHeap* heap, int i){
     if(largest_element_index != i){
         heap->array[largest_element_index] = curr_element;
         heap->array[i] = largest_element;
-        heapify(heap, largest_element_index);
+        heapify(heap, (int)(i/2)-1);
     }
 }
 
 /// @brief This inserts a value into a max-heap
 /// @param heap 
 /// @param value 
-void insert(MaxHeap* heap, int value);
+void insert(MaxHeap* heap, int value){
+    heap->array[heap->size] = value;
+    int parent_index = (int)(heap->size)/2;
+    heap->size++;
+    if(parent_index>0){
+        heapify(heap, parent_index);
+    }
+    
+}
 
 // displays the max element in the MaxHeap array
 void peek_max(MaxHeap* heap){
@@ -71,7 +80,16 @@ int extractMax(MaxHeap* heap);
 /// @brief - Display the given MaxHeap in a visually clear way.
 /// @param heap 
 /// @param stop_idx - This index in the MaxHeap array corresponds to the last item of the heap
-void display_heap(MaxHeap* heap, int stop_idx);
+void display_heap(MaxHeap* heap, int stop_idx){
+    printf("\n> Heap Array -> ");
+    if(stop_idx > heap->size-1){
+        stop_idx = heap->size;
+    }
+    for(int i = 0; i<stop_idx; i++){
+        printf("%2d -> ", heap->array[i]);
+    }
+    printf("END\n");
+}
 
 
 
@@ -86,5 +104,17 @@ MaxHeap *constructHeap(int *arr, int arr_length);
 void heapSort_ascending(MaxHeap* heap);
 
 void main(){
-    printf("All Fine!");
+    MaxHeap* heap = initHeap(10);
+    insert(heap, 10);
+    display_heap(heap, 10);
+    insert(heap, 8);
+    display_heap(heap, 10);
+    insert(heap, 7);
+    display_heap(heap, 10);
+    insert(heap, 9);
+    display_heap(heap, 10);
+    insert(heap, 11);
+    display_heap(heap, 10);
+    insert(heap, 5);
+    display_heap(heap, 10);
 }
