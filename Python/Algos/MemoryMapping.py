@@ -1,4 +1,6 @@
 import math
+
+
 class MemMapping:
     def __init__(self, MemSize: int, CacheSize: int, BlockSize: int) -> None:
         self.mem_size = MemSize
@@ -11,7 +13,7 @@ class MemMapping:
         self.bi_arr = self.int_to_bin_loop(self.size_block_index)
         self.ci_arr = self.int_to_bin_loop(self.size_cache_index)
 
-    def int_to_bin_loop(self, n: int) -> list[str]: 
+    def int_to_bin_loop(self, n: int) -> list[str]:
         arr = []
         for i in range(2**n):
             arr.append(bin(i)[2:].zfill(n))
@@ -20,7 +22,9 @@ class MemMapping:
     def maps_to(self, block_index: str) -> None:
         if block_index in self.bi_arr:
             bitdiff = self.size_cache_index - self.size_block_index
-            print(f"> {block_index} Block Index maps to {block_index[bitdiff:]} Cache Index\n")
+            print(
+                f"> {block_index} Block Index maps to {block_index[bitdiff:]} Cache Index\n"
+            )
         else:
             print("> Out of Range Index!\n")
 
@@ -43,6 +47,7 @@ class MemMapping:
 
 
 mem = MemMapping(MemSize=128, CacheSize=32, BlockSize=8)
+print("Searching Key Mappings: ")
 mem.maps_to("1111")
 mem.maps_to("0000")
 mem.maps_to("0101")
