@@ -25,6 +25,7 @@ class MemMapping:
             print("> Out of Range Index!\n")
 
     def display_details(self) -> None:
+        print("Details".center(50, "-"))
         print("> Memory Size:", self.mem_size)
         print("> Cache Size:", self.cache_size)
         print("> Block Size:", self.block_size)
