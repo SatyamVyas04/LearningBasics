@@ -32,7 +32,25 @@ int* selection_sort(int *array, int len){
 int main(){
 	clock_t time = clock();
 	
-	// Algo Calls	
+	FILE *inputFile;
+	inputFile = fopen("./numbers.txt", "r");
+	
+	if(inputFile == NULL){
+      printf("Error!");   
+      exit(1);             
+   	}
+   	
+	int num;
+	int *arr[100];
+	for (int bracket = 0; bracket < 1000; bracket++){
+		printf("Bracket %d : ", bracket+1);
+		for (int index = 0; index < 100; index++){
+			if (fscanf(inputFile, "%d", &num) == 1) {
+				    printf("%d ",num);
+			}
+		}
+		printf("\n");
+	}
 	
 	time = clock() - time;
 	double time_taken = ((double)time)/CLOCKS_PER_SEC;
