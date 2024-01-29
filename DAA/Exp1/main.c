@@ -7,32 +7,41 @@
 void swap(int* x, int* y) { 
   int tmp = *x;  
   *x = *y; 
-  *y = *tmp; 
+  *y = tmp; 
 } 
 
 
 // The Insertion Sort in our case sorts the array and returns the sorted array
-int* insertion_sort(int *array, int len){
+double insertion_sort(int *array, int len){
+	clock_t time = clock();
 	
 	// Algo
 	
-	return array;
+	time = clock() - time;
+	double time_taken = ((double)time)/CLOCKS_PER_SEC;
+	return time_taken;
 }
 
 
 // The Selection Sort in our case sorts the array and returns the sorted array
-int* selection_sort(int *array, int len){
+double selection_sort(int *array, int len){
+	clock_t time = clock();
 	
 	// Algo
 	
-	return array;
+	time = clock() - time;
+	double time_taken = ((double)time)/CLOCKS_PER_SEC;
+	return time_taken;
 }
 
 
 int main(){
 	int num;
-	int arr[100];
-	clock_t time = clock();
+	int mult;
+	int* arr = (int *) malloc(100 * sizeof(int));
+	int* arr2 = (int *) malloc(100 * sizeof(int));
+	clock_t time;
+	double time_taken;
 	FILE *inputFile;
 	
 	inputFile = fopen("./numbers.txt", "r");
@@ -41,17 +50,25 @@ int main(){
       exit(1);             
    	}
    	
-	for (int bracket = 0; bracket < 1000; bracket++){
-		printf("Bracket %d : ", bracket+1);
-		for (int index = 0; index < 100; index++){
-			if (fscanf(inputFile, "%d", &num) == 1) {
-				    arr[index] = num;
-			}
-		}
-		
-	}
-	
-	time = clock() - time;
-	double time_taken = ((double)time)/CLOCKS_PER_SEC;
+   	for(int i = 0; i < 100000; i+=100){
+   		mult = i/100 + 1;
+   		arr = (int *) realloc(arr, mult*100*sizeof(int));
+   		arr2 = (int *) realloc(arr, mult*100*sizeof(int));
+   		
+   		// Array Input
+   		for(int j = 0; j<100; j++){
+   			if (fscanf(inputFile, "%d", &num)){
+   				arr[i+j] = num;
+				arr2[i+j] = num;				
+   			}
+   		}
+   		
+   		// Algo Run
+   		printf("\n> Insertion Sort Size : %d\t", mult*100);
+   		time = insertion_sort(arr, mult*100);
+   		printf("Time: %ld\t", time);
+   		
+   	}
+   	
 	return 0;
 }
