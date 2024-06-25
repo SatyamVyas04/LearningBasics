@@ -39,11 +39,11 @@ for _ in range(int(input())):
     if len(s) == 2:
         print(int(s))
     elif len(s) == 3:
-        pair1 = int(s[:1])
+        pair1 = int(s[:2])
         pair2 = int(s[1:])
-        if pair1 < pair2:
-            print(min(pair1 * int(s[2]), pair1 + int(s[2])))
-        else:
-            print(min(pair2 * int(s[0]), pair2 + int(s[0])))
+        a = min(pair1 * int(s[2]), pair1 + int(s[2]))
+        b = min(pair2 * int(s[0]), pair2 + int(s[0]))
+        ans = min(a, b)
+        print(ans)
     else:
         print(fn(n, s))
