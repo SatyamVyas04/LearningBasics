@@ -1,10 +1,9 @@
-def fn(arr):
-    total = 0
-    avg = sorted(arr)[1]
-    for i in arr:
-        total += abs(avg - i)
-    return total
+def fn(n, arr):
+    ans = 0
+    
+    return ans
 
 for _ in range(int(input())):
+    n = int(input)
     arr = list(map(int, input().split()))
     print(fn(arr))
