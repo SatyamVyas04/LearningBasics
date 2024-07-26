@@ -1,4 +1,3 @@
-# A
 def int_inp():
     """
     Reads an integer input.
