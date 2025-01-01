@@ -64,7 +64,7 @@ class Booth:
         self.a = shift[: self.size]
         self.q = shift[self.size :]
 
-    def __repr__(self, remark):
+    def print_repr(self, remark):
         print(f"> {self.a}\t{self.q}\t{self.q_1}\t{self.count}\t{remark}")
 
     def algo(self):
@@ -75,25 +75,25 @@ class Booth:
         print("Count" + "\t", end="")
         print("Remark" + "\t\t")
 
-        self.__repr__("Initial")
+        self.print_repr("Initial")
         while self.count != 0:
             self.q0 = self.q[-1]
-            self.__repr__("Current")
+            self.print_repr("Current")
             if self.q0 == "1" and self.q_1 == "0":
                 self.a = self.add(self.a, self.subm)
-                self.__repr__("A = A - M")
+                self.print_repr("A = A - M")
             elif self.q0 == "0" and self.q_1 == "1":
                 self.a = self.add(self.a, self.m)
-                self.__repr__("A = A + M")
+                self.print_repr("A = A + M")
             else: 
                 pass
             self.asr()
             self.q_1 = self.q0
-            self.__repr__("ASR")
+            self.print_repr("ASR")
             print()
             self.count -= 1
 
-        self.__repr__("Final")
+        self.print_repr("Final")
         if self.qq * self.mm < 0:
             print("\n> ANS: " + self.a + self.q)
             print("> ANS Absolute Value: " + self.twoscompfin(self.a + self.q))
